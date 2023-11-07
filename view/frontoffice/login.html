@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Dribbble Challenge: Sign Up/Login</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<link href="https://fonts.googleapis.com/css?family=PT+Sans|Ubuntu:400,500" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<body>
+  <div class="wrapper">
+    <div class="background">
+      <div class="left">
+        <h2 class="back-header">Dont have an account yet?</h2>
+        <p class="back-p">Well doggonit you should sign up today!</p>
+        <button class="back-btn signup-but">SIGN UP</button>
+      </div>
+      <div class="right">
+        <h2 class="back-header">Do you already have an account?</h2>
+        <p class="back-p">Well doggonit let's get you logged in!</p>
+        <button class="back-btn login-but">LOGIN</button>
+      </div>
+    </div>
+    <div class="form-container">
+      <div class="sign-up">
+        <h2 class="form-header">SIGN UP</h2>
+        <input type="text" id="user" placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
+        <input type="text" id="username" placeholder="Username"><i class="fa fa-user-plus"></i></input>
+        <div class="sex_choice">
+            <div class="choice">
+                <label for="male">Male</label>
+                <input type="radio" name="sex" id="male" value="male" class="radio">
+            </div>
+            <div class="choice">
+                <label for="female">Female</label>
+                <input type="radio" name="sex" id="female" value="female" class="radio">
+            </div>
+            <div class="choice">
+                <label for="other">Other</label>
+                <input type="radio" name="sex" id="other" value="other" class="radio">
+            </div>
+        </div>
+        <input type="date" name="doB" id="doB"><i class="fa fa-calendar"></i></input>
+        
+        <input type="text" id="email" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+        <input type="password" id="pass" placeholder="Password"><i class="fa fa-lock"></i></input>
+        <button class="form-btn">SIGN UP</button>
+      </div>
+      <div class="login hide">
+        <h2 class="form-header">LOGIN</h2>
+        <input type="text" id="email" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+        <input type="password" id="pass" placeholder="Password"><i class="fa fa-lock"></i></input>
+        <button class="form-btn">LOGIN</button>
+        <a class="forgot" href="#">Forgot password</a>
+        
+      </div>
+    </div>
+  </div>
+</body>
+<!-- partial -->
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background: url(https://images.unsplash.com/photo-1630332457574-442922141abf?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    font-family: "PT Sans";
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+  
+  .hide {
+    display: none;
+  }
+  
+  .wrapper {
+    background: rgba(0, 0, 0, 0.6);
+    position: relative;
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    margin-top: 90px;
+  }
+  
+  .left,
+  .right {
+    width: 50%;
+  }
+  
+  .left {
+    float: left;
+  }
+  
+  .right {
+    float: right;
+  }
+  
+  .back-header,
+  .back-p {
+    margin: 20px;
+    color: #fafafa;
+    letter-spacing: 1px;
+  }
+  
+  .back-header {
+    font-family: "Ubuntu";
+    font-size: 30px;
+    font-weight: 500;
+  }
+  
+  .back-p {
+    font-family: "PT Sans";
+    letter-spacing: 1px;
+    font-size: 20px;
+    line-height: 30px;
+    margin-right: 60px;
+  }
+  
+  .background button {
+    position: absolute;
+    left: 0;
+    bottom: 60px;
+  }
+  
+  .background .left button {
+    left: 20px;
+  }
+  
+  .background .right button {
+    left: 420px;
+  }
+  
+  .form-container {
+    position: absolute;
+    width: 375px;
+    height: 535px;
+    background-color:white ;
+    top: -25px;
+    left: 10px;
+    box-shadow: 9px 13px 16px 0px rgba(0, 0, 0, 0.75);
+  }
+  
+  .sign-up,
+  .login {
+    margin: 40px;
+  }
+  
+  .back-btn {
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+    border: 1px solid white;
+    color: #fafafa;
+    transition: 0.3s all;
+  }
+  
+  .back-btn:hover {
+    background-color: #145977;
+    border: 1px solid #145977;
+  }
+  
+  .form-btn {
+    display: block;
+    margin-top: 30px;
+    width: 150px;
+    height: 35px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 3px;
+    background-color: #e6963b;
+    color: #fafafa;
+    transition: 0.4s all;
+  }
+  
+  .sign-up button:hover,
+  .login button:hover {
+    background-color: #c75f3c;
+  }
+  
+  .form-header {
+    font-size: 32px;
+    color: #e6963b;
+  }
+  
+  .form-container input {
+    margin-top: 20px;
+    width: 80%;
+    height: 30px;
+    border: 0;
+    border-bottom: 1px solid #888;
+  }
+  .sex_choice label{
+    margin-top: 20px;
+    padding: 4px;
+  }
+  
+  input[type=text],
+  input[type=email] {
+    color: #555;
+  }
+  
+  .form-container i {
+    margin-left: 10px;
+    margin-bottom: -5px;
+    color: #888;
+  }
+  
+  .login button,
+  .forgot {
+    display: inline-block;
+  }
+  
+  .forgot {
+    margin-left: 15px;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .forgot:hover {
+    color: #E7A960;
+    text-decoration: underline;
+  }
+
+  .sex_choice{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+  }
+  .choice {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; 
+}
+.form-container input[type="date"] {
+    margin-top: 20px;
+    width: 80%;
+    height: 30px;
+    border: 0;
+    border-bottom: 1px solid #888;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+    color: #555;
+}
+  
+
+.sex_choice .choice label,.radio{
+    color: #555;
+    font-size: 16px; /* Adjust the font size */
+    cursor: pointer;
+  }
+  
