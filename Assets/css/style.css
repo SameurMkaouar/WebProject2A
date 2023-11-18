@@ -1,0 +1,21 @@
+#button-user {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#img-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+#button-publish {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
