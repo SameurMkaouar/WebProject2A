@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
   const idPost = urlParams.get("id");
-  fetch(`../../Controller/fetchComments.php?id=${idPost}`)
+  fetch(`../../View/FrontOffice/fetchComments.php?id=${idPost}`)
     .then((response) => response.json())
     .then((data) => {
       for (let i = 0; i < data.length; i++) {

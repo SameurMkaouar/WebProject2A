@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   //REQUETE AJAX POUR RECUPERER UN TABLEAU DES POSTS VIA JSON FILE
-  fetch("../../Controller/fetchPosts.php")
+  fetch("../../View/FrontOffice/fetchPosts.php")
     .then((response) => response.json())
     .then((data) => {
       console.log("selem");
