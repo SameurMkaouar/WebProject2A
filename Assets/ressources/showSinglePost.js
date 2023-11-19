@@ -36,5 +36,34 @@ document.addEventListener("DOMContentLoaded", function () {
       document
         .getElementById("comment_form")
         .insertAdjacentHTML("afterbegin", hiddenIdPost);
+      //AFFICHER BOUTONS DELETE UPDATE
+      showEditButtons(post.id_user, post.id_post);
     });
 });
+
+function showEditButtons(idUser, idPost) {
+  fetch(`../../View/FrontOffice/checkUser.php?id_user=${idUser}`)
+    .then((response) => response.text())
+    .then((data) => {
+      if (data == "1") {
+        const html = `<button
+                style="margin: 25px"
+                class="theme_button"
+                onclick="window.location.href = 'blog-form-update.html?id=${idPost}';"
+              >
+                Update Post
+              </button>
+
+              <button
+                style="margin: 25px"
+                class="theme_button"
+                onclick="window.location.href = 'deletePost.php?id=${idPost}';"
+              >
+                Delete Post
+              </button>`;
+        document
+          .getElementById("button-user")
+          .insertAdjacentHTML("afterbegin", html);
+      }
+    });
+}

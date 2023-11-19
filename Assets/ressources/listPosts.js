@@ -3,18 +3,28 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch("../../View/FrontOffice/fetchPosts.php")
     .then((response) => response.json())
     .then((data) => {
-      console.log("selem");
-      //   console.log(data[0]);
-      //   console.log(data.length);
-      for (let i = 0; i < data.length; i++) {
-        const post = data[i];
-        // console.log(post);
-        postContent = post.post_content;
-        const previewLimit = 250;
-        if (postContent.length > previewLimit) {
-          postContent = postContent.substring(0, previewLimit) + "...";
-        }
-        const postHTML = `
+      AfficherPosts(data);
+    });
+});
+
+function fetchPosts(sortType) {
+  fetch("../../View/FrontOffice/FetchPosts.php?sort=" + sortType)
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("post-container").innerHTML = "";
+      AfficherPosts(data);
+    });
+}
+
+function AfficherPosts(data) {
+  for (let i = 0; i < data.length; i++) {
+    const post = data[i];
+    postContent = post.post_content;
+    const previewLimit = 250;
+    if (postContent.length > previewLimit) {
+      postContent = postContent.substring(0, previewLimit) + "...";
+    }
+    const postHTML = `
                 <div class="col-sm-10 col-sm-push-1">
                     <article class="vertical-item content-padding post format-standard with_shadow">
                         <div class="item-media entry-thumbnail">
@@ -47,9 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     </article>
                 </div>
             `;
-        document
-          .getElementById("post-container")
-          .insertAdjacentHTML("beforeend", postHTML);
-      }
-    });
-});
+    document
+      .getElementById("post-container")
+      .insertAdjacentHTML("beforeend", postHTML);
+  }
+}

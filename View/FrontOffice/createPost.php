@@ -1,5 +1,5 @@
 <?php
-        require("Post.php");
+        require("../../Controller/Post.php");
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $ptitle = isset($_POST['post_title']) ? $_POST['post_title'] : '';
             $pcontent = isset($_POST['post_content']) ? $_POST['post_content'] : '';
@@ -14,7 +14,7 @@
             $Post = new Post();
             $Post->createPost($post);
 
-            header("FrontOffice/blog-full.html");
+            header('Location: blog-full.html');
         }
 ?>
 

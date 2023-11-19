@@ -928,6 +928,35 @@
               >
                 Publish Post
               </button>
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="active">
+                  <a
+                    href=""
+                    role="tab"
+                    data-toggle="tab"
+                    onclick="fetchPosts('recent')"
+                    >Recent</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href=""
+                    role="tab"
+                    data-toggle="tab"
+                    onclick="fetchPosts('popular')"
+                    >Popular</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href=""
+                    role="tab"
+                    data-toggle="tab"
+                    onclick="fetchPosts('comments')"
+                    >Most Commented</a
+                  >
+                </li>
+              </ul>
             </div>
             <div class="row">
               <div class="col-sm-10 col-sm-push-1" id="post-container"></div>

@@ -13,6 +13,48 @@
                     $e->getMessage();
                 }
             }
+            public function getPopularPosts(){
+                $db = config::getConnexion();
+                try{
+                    $query = 'SELECT * FROM post ORDER BY post_likes DESC;';
+                    $result = $db->query($query);
+                    $data = $result->fetchAll(PDO::FETCH_ASSOC);
+                    return $data;
+                }
+                catch(PDOException $e){
+                    $e->getMessage();
+                }
+            }
+            public function getRecentPosts(){
+                $db = config::getConnexion();
+                try{
+                    $query = 'SELECT * FROM post ORDER BY post_time DESC';
+                    $result = $db->query($query);
+                    $data = $result->fetchAll(PDO::FETCH_ASSOC);
+                    return $data;
+                }
+                catch(PDOException $e){
+                    $e->getMessage();
+                }
+            }
+            public function getPostsByComments(){
+                $db = config::getConnexion();
+                try{
+                    $query = 'SELECT p.*, (
+                        SELECT COUNT(*)
+                        FROM comment c
+                        WHERE c.id_post = p.id_post
+                    ) AS comment_count
+                    FROM post p
+                    ORDER BY comment_count DESC;';
+                    $result = $db->query($query);
+                    $data = $result->fetchAll(PDO::FETCH_ASSOC);
+                    return $data;
+                }
+                catch(PDOException $e){
+                    $e->getMessage();
+                }
+            }
             function getPost($id){
                 $db = config::getConnexion();
                 try{

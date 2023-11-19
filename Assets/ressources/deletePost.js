@@ -3,7 +3,7 @@ document.getElementById("delete-button").addEventListener("click", function () {
   checkboxes.forEach(function (checkbox) {
     //RECUPERER ID DU POST
     var id = checkbox.previousElementSibling.elements["idPost"].value;
-    fetch(`../../Controller/deletePost.php?id=${id}`)
+    fetch(`../../View/FrontOffice/deletePost.php?id=${id}`)
       .then((response) => {
         location.reload();
       })
