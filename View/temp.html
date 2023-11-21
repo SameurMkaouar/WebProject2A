@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood Selector</title>
+  <style>
+    body-mood {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #mood-container {
+      text-align: center;
+    }
+
+    .mood-option {
+      display: inline-block;
+      margin: 8px;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .mood-option:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .mood-option.selected {
+      background-color: #2ecc71; /* Change color to indicate selection */
+    }
+
+    #selected-moods {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #mood-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #mood-list li {
+      margin: 8px 0;
+      font-size: 18px;
+      color: #333;
+    }
+
+    #talk-about-it {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    #talk-textarea {
+      width: 100%;
+      max-width: 400px;
+      height: 100px;
+      resize: none;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    #talk-textarea:focus {
+      outline: none;
+      border-color: #3498db;
+    }
+
+    #submit-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    #submit-btn:hover {
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+<body-mood>
+
+<div id="mood-container">
+  <h1>How are you feeling today?</h1>
+  <div class="mood-option" onclick="addMood('Happy')" id="happyBtn">Happy</div>
+  <div class="mood-option" onclick="addMood('Sad')" id="sadBtn">Sad</div>
+  <div class="mood-option" onclick="addMood('Depressed')" id="depressedBtn">Depressed</div>
+  <div class="mood-option" onclick="addMood('Angry')" id="angryBtn">Angry</div>
+
+  <div id="selected-moods">
+    <h2>Your Selected Moods:</h2>
+    <ul id="mood-list"></ul>
+  </div>
+
+  <div id="talk-about-it">
+    <h2>Do you want to talk about it?</h2>
+    <textarea id="talk-textarea" placeholder="Write here..."></textarea>
+    <button id="submit-btn" onclick="submitForm()">Submit</button>
+  </div>
+</div>
+
+<script>
+  function addMood(mood) {
+    var moodList = document.getElementById('mood-list');
+
+    // Check if the mood is already in the list
+    var existingMoods = Array.from(moodList.children).map(item => item.textContent.toLowerCase());
+    if (existingMoods.includes(mood.toLowerCase())) {
+      return;
+    }
+
+    var listItem = document.createElement('li
