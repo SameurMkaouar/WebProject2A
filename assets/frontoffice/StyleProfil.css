@@ -4,9 +4,7 @@
   }
   
   body {
-    background: url(https://images.pexels.com/photos/7176305/pexels-photo-7176305.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
-    background-repeat: no-repeat;
-    background-size: 100% ;
+    background: url(https://images.unsplash.com/photo-1630332457574-442922141abf?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     font-family: "PT Sans";
   }
   
@@ -21,24 +19,20 @@
   .wrapper {
     background: rgba(0, 0, 0, 0.6);
     position: relative;
-    width: 800px;
-    height: 500px;
+    width: 1000px;
+    height: 530px;
     margin: 0 auto;
-    margin-top: 90px;
+    margin-top: 60px;
+  }
+  .background{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
   }
   
-  .left,
-  .right {
-    width: 50%;
-  }
+ 
   
-  .left {
-    float: left;
-  }
-  
-  .right {
-    float: right;
-  }
+ 
   
   .back-header,
   .back-p {
@@ -62,23 +56,19 @@
   }
   
   .background button {
-    position: absolute;
+    
     left: 0;
-    bottom: 60px;
+    top: 20px;
+    border: 0px;
+    border-bottom: solid 1px;
   }
   
-  .background .left button {
-    left: 20px;
-  }
   
-  .background .right button {
-    left: 420px;
-  }
   
   .form-container {
     position: absolute;
     width: 375px;
-    height: 535px;
+    height: 565px;
     background-color:white ;
     top: -25px;
     left: 10px;
@@ -86,7 +76,8 @@
   }
   
   .sign-up,
-  .login {
+  .login,
+  .bob{
     margin: 40px;
   }
   
@@ -103,8 +94,8 @@
   }
   
   .back-btn:hover {
-    background-color: #D9BE94;
-    border: 1px solid #D9BE94;
+    color: #145977;
+    border-bottom: 1px solid #145977;
   }
   
   .form-btn {
@@ -115,19 +106,20 @@
     font-size: 18px;
     border: 0;
     border-radius: 3px;
-    background-color: #91D0CC;
+    background-color: #e6963b;
     color: #fafafa;
     transition: 0.4s all;
   }
   
   .sign-up button:hover,
-  .login button:hover {
-    background-color: #4BB0A9;
+  .login button:hover,
+  .bob button:hover {
+    background-color: #c75f3c;
   }
   
   .form-header {
     font-size: 32px;
-    color: #91D0CC;
+    color: #e6963b;
   }
   
   .form-container input {
@@ -165,7 +157,7 @@
   }
   
   .forgot:hover {
-    color: #D9BE94;
+    color: #E7A960;
     text-decoration: underline;
   }
 
@@ -200,12 +192,17 @@ input[type="date"] {
     cursor: pointer;
   }
   
-.fullname{
-  display: flex; 
-}
-.fullname input{
-  max-width: 110px;
-}
-.ln{
-  margin-left:20px;
+.profile-picture{
+  
+  bottom: -5rem;
+  left: 0; 
+  right: 0;
+  margin: auto;
+  height: 10rem;
+  width: 10rem;
+  background: #fff;
+  box-shadow: var(--box-shadow); 
+  border-radius: 50%;
+  overflow: hidden;
+  
 }
