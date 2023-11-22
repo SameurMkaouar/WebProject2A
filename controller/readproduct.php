@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
 include(__DIR__ . '/../config.php');
-=======
-include_once '../config.php';
->>>>>>> 9c10d6a704077fbbc08e24bd8bd0b797fab619a2
 //include 'updateproduct.php';
 
 $pdo = config::getConnexion();
@@ -18,7 +14,6 @@ if ($pdo) {
 
             if ($products) {
                 foreach ($products as $product) {
-<<<<<<< HEAD
 
                     $imageData = base64_encode($product['productMedia']);
                     // Display each product information
@@ -75,28 +70,6 @@ if ($pdo) {
 
                     </tr>
 <?php
-=======
-                    // Display each product information
-                    echo "<h2>{$product['productTitle']}</h2>";
-                    echo "<p>ID: {$product['Product_ID']}</p>";
-                    echo "<p>Slug: {$product['productSlug']}</p>";
-                    echo "<p>Price: {$product['productPrice']}</p>";
-                    echo "<p>Short Description: {$product['productShortDesc']}</p>";
-                    echo "<p>Description: {$product['productDesc']}</p>";
-                    echo "<p>Publish Date: {$product['productPublishDate']}</p>";
-                    echo "<p>Publish Time: {$product['productPublishTime']}</p>";
-                    echo "<p>Category: {$product['productCategory']}</p>";
-                    echo "<p>Tags: {$product['productTags']}</p>";
-                    echo "<p>Media: {$product['productMedia']}</p>";
-
-                    // Add link for updating the product
-                    echo "<p><a href='updateproduct.php?Product_ID={$product['Product_ID']}'>Update Product</a></p>";
-                    // delete lol
-                    echo "<p><a href='deleteproduct.php?Product_ID={$product['Product_ID']}'>Delete Product</a></p>";
-
-
-                    echo "<hr>";
->>>>>>> 9c10d6a704077fbbc08e24bd8bd0b797fab619a2
                 }
             } else {
                 echo "No products found.";

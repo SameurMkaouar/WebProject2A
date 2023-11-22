@@ -19,15 +19,12 @@ if ($pdo) {
         $productMedia = $_POST['productMedia'];
 
         try {
-<<<<<<< HEAD
             if (isset($_FILES['productMedia']) && $_FILES['productMedia']['error'] == UPLOAD_ERR_OK) {
                 $productMedia = file_get_contents($_FILES['productMedia']['tmp_name']);
             } else {
                 echo "Error: Invalid file upload.";
                 return;
             }
-=======
->>>>>>> 9c10d6a704077fbbc08e24bd8bd0b797fab619a2
             // Update the product in the database
             $query = $pdo->prepare("UPDATE product SET 
                 productTitle = :productTitle,
@@ -57,11 +54,7 @@ if ($pdo) {
             ]);
 
             // Redirect to the product list or show a success message
-<<<<<<< HEAD
             header('Location: ../ok/HTML/admin_products.php');
-=======
-            header("Location: readproduct.php");
->>>>>>> 9c10d6a704077fbbc08e24bd8bd0b797fab619a2
             exit();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
