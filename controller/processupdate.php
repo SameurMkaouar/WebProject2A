@@ -54,7 +54,7 @@ if ($pdo) {
             ]);
 
             // Redirect to the product list or show a success message
-            header('Location: ../ok/HTML/admin_products.php');
+            header('Location: ../view/HTML/admin_products.php');
             exit();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

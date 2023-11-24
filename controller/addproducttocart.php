@@ -25,7 +25,7 @@ if ($pdo) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         AddProductToCart();
         //header('Location: readproduct.php');
-        header('Location: ../ok/HTML/shop-product-right.php?ID=' . $_GET['productid'] . '');
+        header('Location: ../view/HTML/shop-product-right.php?ID=' . $_GET['productid'] . '');
     }
 } else {
     echo "Error: Unable to connect to the database.";

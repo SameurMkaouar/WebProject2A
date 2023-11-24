@@ -26,11 +26,11 @@ function updateProduct()
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>Update Product</title>
-                        <link rel="stylesheet" href="../ok/HTML/css/css/bootstrap.min.css" />
-                        <link rel="stylesheet" href="../ok/css/animations.css" />
-                        <link rel="stylesheet" href="../ok/HTML/css/fonts.css" />
-                        <link rel="stylesheet" href="../ok/HTML/css/main.css" class="color-switcher-link" />
-                        <link rel="stylesheet" href="../ok/HTML/css/dashboard.css" class="color-switcher-link" />
+                        <link rel="stylesheet" href="../view/HTML/css/css/bootstrap.min.css" />
+                        <link rel="stylesheet" href="../view/css/animations.css" />
+                        <link rel="stylesheet" href="../view/HTML/css/fonts.css" />
+                        <link rel="stylesheet" href="../view/HTML/css/main.css" class="color-switcher-link" />
+                        <link rel="stylesheet" href="../view/HTML/css/dashboard.css" class="color-switcher-link" />
                     </head>
 
                     <body class="admin">
@@ -40,7 +40,7 @@ function updateProduct()
                                 <header class="page_header_side page_header_side_sticked active-slide-side-header ds">
                                     <div class="side_header_logo ds ms">
 
-                                        <a href="../ok/HTML/admin_products.php">
+                                        <a href="../view/HTML/admin_products.php">
 
                                             <span class="logo_text"> Go Back </span>
                                             <div></div>

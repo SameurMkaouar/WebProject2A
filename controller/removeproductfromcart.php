@@ -12,7 +12,7 @@ if ($pdo) {
         $query->execute(['Cart_Item_ID' => $id]);  // Corrected parameter name
 
         // Redirect to the product list after deletion
-        header('Location: ../ok/HTML/shop-cart-right.php');
+        header('Location: ../view/HTML/shop-cart-right.php');
         exit();
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
