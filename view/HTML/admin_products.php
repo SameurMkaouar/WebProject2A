@@ -583,45 +583,45 @@ session_start();
               </div>
             </li>
 
-            <!-- Uncomment following to show user menu 
-				
-					<li class="dropdown user-dropdown-menu">
-						<a class="header-button" id="user-dropdown-menu" data-target="#" href="./" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-							<i class="fa fa-user grey"></i> <span class="header-button-text">User</span>
-						</a>
-						<div class="dropdown-menu ls">
-							<ul class="nav darklinks">
-								<li>
-									<a href="admin_profile.html">
-										<i class="fa fa-user"></i>
-										Profile
-									</a>
-								</li>
-								<li>
-									<a href="admin_profile_edit.html">
-										<i class="fa fa-edit"></i>
-										Edit Profile
-									</a>
-								</li>
-								<li>
-									<a href="admin_inbox.html">
-										<i class="fa fa-envelope-o"></i>
-										Inbox
-									</a>
-								</li>
-								<li>
-									<a href="admin_signin.html">
-										<i class="fa fa-sign-out"></i>
-										Log Out
-									</a>
-								</li>
-							</ul>
 
-						</div>
 
-					</li>
-				
-				-->
+            <li class="dropdown user-dropdown-menu">
+              <a class="header-button" id="user-dropdown-menu" data-target="#" href="./" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                <i class="fa fa-user grey"></i> <span class="header-button-text">User</span>
+              </a>
+              <div class="dropdown-menu ls">
+                <ul class="nav darklinks">
+                  <li>
+                    <a href="admin_profile.html">
+                      <i class="fa fa-user"></i>
+                      Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="admin_profile_edit.html">
+                      <i class="fa fa-edit"></i>
+                      Edit Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="admin_inbox.html">
+                      <i class="fa fa-envelope-o"></i>
+                      Inbox
+                    </a>
+                  </li>
+                  <li>
+                    <a href="admin_signin.html">
+                      <i class="fa fa-sign-out"></i>
+                      Log Out
+                    </a>
+                  </li>
+                </ul>
+
+              </div>
+
+            </li>
+
+
 
             <li class="dropdown visible-xs-inline-block">
               <a href="#" class="search_modal_button header-button">
@@ -675,52 +675,65 @@ session_start();
               <div class="with_border with_padding">
                 <div class="row admin-table-filters">
                   <div class="col-lg-9">
-                    <form action="/" class="form-inline filters-form">
-                      <span>
-                        <label class="grey" for="with-selected">With Selected:</label>
-                        <select class="form-control with-selected" name="with-selected" id="with-selected">
-                          <option value="">-</option>
-                          <option value="publish">Publish</option>
-                          <option value="delete">Delete</option>
-                        </select>
-                      </span>
+                    <form action="" method="get" class="form-inline filters-form" id="filtersForm">
                       <span>
                         <label class="grey" for="orderby">Sort By:</label>
                         <select class="form-control orderby" name="orderby" id="orderby">
-                          <option value="date" selected>Date</option>
-                          <option value="price">Price</option>
-                          <option value="title">Title</option>
-                          <option value="status">Status</option>
+                          <option value="date" <?php if (isset($_GET['orderby']) && $_GET['orderby'] == 'date') echo 'selected'; ?>>Date</option>
+                          <option value="price" <?php if (isset($_GET['orderby']) && $_GET['orderby'] == 'price') echo 'selected'; ?>>Price</option>
+                          <option value="title" <?php if (isset($_GET['orderby']) && $_GET['orderby'] == 'title') echo 'selected'; ?>>Title</option>
                         </select>
                       </span>
 
                       <span>
                         <label class="grey" for="showcount">Show:</label>
                         <select class="form-control showcount" name="showcount" id="showcount">
-                          <option value="10" selected>10</option>
-                          <option value="20">20</option>
-                          <option value="30">30</option>
-                          <option value="50">50</option>
-                          <option value="100">100</option>
+                          <option value="5" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 5) echo 'selected'; ?>>5</option>
+                          <option value="10" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 10) echo 'selected'; ?>>10</option>
+                          <option value="20" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 20) echo 'selected'; ?>>20</option>
+                          <option value="30" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 30) echo 'selected'; ?>>30</option>
+                          <option value="50" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 50) echo 'selected'; ?>>50</option>
                         </select>
                       </span>
-                    </form>
+
                   </div>
-                  <!-- .col-* -->
-                  <div class="col-lg-3 text-lg-right">
-                    <div class="widget widget_search">
-                      <form method="get" class="searchform form-inline" action="./">
-                        <div class="form-group">
-                          <label class="screen-reader-text" for="widget-search">Search for:</label>
-                          <input id="widget-search" type="text" value="" name="search" class="form-control" placeholder="Search" />
-                        </div>
-                        <button type="submit" class="theme_button">
-                          Search
-                        </button>
-                      </form>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="widget-search">Search for:</label>
+                    </div>
+                    <input id="widget-search" type="text" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" name="search" class="form-control" placeholder="Search" />
+                    <div class="input-group-append">
+                      <button type="submit" class="theme_button" style="background-color: transparent; border: none;">
+                        <i class="fa fa-search highlight"></i>
+                      </button>
                     </div>
                   </div>
+
+                  <style>
+                    .theme_button .fa-search {
+                      transition: color 0.3s ease-out;
+                      /* Separate transition property for color */
+                    }
+
+                    .theme_button:hover .fa-search {
+                      color: black !important;
+                      transition: color 0.3s ease-in-out;
+                      /* Add the ease-in-out transition effect */
+                    }
+                  </style>
+
+
+                  <style>
+                    .input-group-append {
+                      display: flex;
+                      align-items: center;
+                    }
+                  </style>
+                  </form>
+
                   <!-- .col-* -->
+
+
                 </div>
                 <!-- .row -->
 
@@ -736,10 +749,9 @@ session_start();
                       <th>Categories:</th>
                       <th>Update:</th>
                       <th>Delete:</th>
-
                     </tr>
                     <?php
-                    include '../../controller/readproduct.php'; //ici affichage l dweyet lkol
+                    include '../../controller/readproduct.php';
                     ?>
                   </table>
                 </div>
@@ -749,44 +761,42 @@ session_start();
             </div>
             <!-- .col-* -->
           </div>
+
+          <script>
+            // Auto-submit the form when sorting, showing, or search input changes
+            document.getElementById('orderby').addEventListener('change', function() {
+              document.getElementById('filtersForm').submit();
+            });
+
+            document.getElementById('showcount').addEventListener('change', function() {
+              document.getElementById('filtersForm').submit();
+            });
+
+            document.getElementById('widget-search').addEventListener('input', function() {
+              //document.getElementById('filtersForm').submit();
+            });
+          </script>
+
           <!-- .row -->
+          <!-- Add this part to display the pagination links -->
           <div class="row">
             <div class="col-sm-12">
               <div class="row">
                 <div class="col-md-6">
                   <ul class="pagination">
-                    <li class="disabled">
-                      <a href="#">
-                        <span class="sr-only">Prev</span>
-                        <i class="fa fa-angle-left"></i>
-                      </a>
-                    </li>
-                    <li class="active">
-                      <a href="#">1</a>
-                    </li>
-                    <li>
-                      <a href="#">2</a>
-                    </li>
-                    <li>
-                      <a href="#">3</a>
-                    </li>
-                    <li>
-                      <a href="#">4</a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span class="sr-only">Next</span>
-                        <i class="fa fa-angle-right"></i>
-                      </a>
-                    </li>
+                    <?php
+                    // Pagination links will be echoed from readproduct.php
+                    ?>
                   </ul>
                 </div>
                 <div class="col-md-6 text-md-right">
-                  Showing 1 to 6 of 12 items
+                  Showing <?php echo $offset + 1; ?> to <?php echo min($offset + $showcount, $totalRecords); ?> of <?php echo $totalRecords; ?> items
                 </div>
               </div>
             </div>
           </div>
+          <!-- End of pagination display -->
+
           <!-- .row main columns -->
         </div>
         <!-- .container -->
