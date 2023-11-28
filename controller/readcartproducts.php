@@ -11,6 +11,8 @@ if ($pdo) {
         try {
             $query = $pdo->query("SELECT * FROM product");
             $query1 = $pdo->query("SELECT * FROM cart_items");
+            $query2 = $pdo->query("SELECT * FROM cart");
+            $carts = $query2->fetchAll(PDO::FETCH_ASSOC);
             $items = $query1->fetchAll(PDO::FETCH_ASSOC);
             $products = $query->fetchAll(PDO::FETCH_ASSOC);
             global $tot;
@@ -18,53 +20,55 @@ if ($pdo) {
             if ($items) {
                 foreach ($items as $item) {
                     foreach ($products as $product) {
-                        if ($item['Product_ID'] == $product['Product_ID']) {
-                            $imageData = base64_encode($product['productMedia']);
+                        foreach ($carts as $cart) {
+                            if ($item['Product_ID'] == $product['Product_ID'] && $cart['Cart_ID'] == $item['Cart_ID'] && $cart['Status'] == 1) {
+                                $imageData = base64_encode($product['productMedia']);
 
-                            //$imageData = base64_encode($product['productMedia']);
+                                //$imageData = base64_encode($product['productMedia']);
 
 
 ?>
-                            <tr class="cart_item">
-                                <td class="product-info">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="shop-product-right.html">
+                                <tr class="cart_item">
+                                    <td class="product-info">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="shop-product-right.html">
 
-                                                <?php
-                                                echo '<img src="data:image/jpeg;base64,' . $imageData . '"  class="media-object cart-product-image">';
-                                                ?>
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">
-                                                <a href="shop-product-right.html"><?php echo $product['productTitle'] ?></a>
-                                            </h4>
+                                                    <?php
+                                                    echo '<img src="data:image/jpeg;base64,' . $imageData . '"  class="media-object cart-product-image">';
+                                                    ?>
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">
+                                                    <a href="shop-product-right.html"><?php echo $product['productTitle'] ?></a>
+                                                </h4>
 
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="product-price">
-                                    <span class="currencies">$</span>
-                                    <span class="amount"><?php echo $product['productPrice'] ?></span>
-                                </td>
-                                <td class="product-quantity">
-                                    <div class="quantity">
-                                        <p><?php echo $item['Qte'] ?></p>
-                                    </div>
-                                </td>
-                                <td class="product-subtotal">
-                                    <span class="currencies">$</span>
-                                    <span class="amount"><?php echo $item['Qte'] * $product['productPrice'] ?></span>
-                                </td>
-                                <td class="product-remove">
-                                    <a href="../../controller/removeproductfromcart.php?id=<?php echo $item['Cart_Item_ID'] ?>" title="Remove this item">
-                                        <i class="fa fa-trash-o"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <?php $tot = $tot + ($item['Qte'] * $product['productPrice']); ?>
+                                    </td>
+                                    <td class="product-price">
+                                        <span class="currencies">$</span>
+                                        <span class="amount"><?php echo $product['productPrice'] ?></span>
+                                    </td>
+                                    <td class="product-quantity">
+                                        <div class="quantity">
+                                            <p><?php echo $item['Qte'] ?></p>
+                                        </div>
+                                    </td>
+                                    <td class="product-subtotal">
+                                        <span class="currencies">$</span>
+                                        <span class="amount"><?php echo $item['Qte'] * $product['productPrice'] ?></span>
+                                    </td>
+                                    <td class="product-remove">
+                                        <a href="../../controller/removeproductfromcart.php?id=<?php echo $item['Cart_Item_ID'] ?>" title="Remove this item">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <?php $tot = $tot + ($item['Qte'] * $product['productPrice']); ?>
                 <?php
+                            }
                         }
                     }
                 }

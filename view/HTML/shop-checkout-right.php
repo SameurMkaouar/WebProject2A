@@ -3,7 +3,6 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-
 <html class="no-js">
 <!--<![endif]-->
 
@@ -655,7 +654,7 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-12 text-center">
-              <h2>Products</h2>
+              <h2>Checkout</h2>
               <ol class="breadcrumb divided_content wide_divider">
                 <li>
                   <a href="./"> Home </a>
@@ -663,173 +662,372 @@
                 <li>
                   <a href="#">Shop</a>
                 </li>
-                <li class="active">Products</li>
+                <li class="active">Checkout</li>
               </ol>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="ls section_padding_top_100 section_padding_bottom_100 columns_padding_25">
+      <section class="ls section_padding_top_100 section_padding_bottom_75 columns_padding_25">
         <div class="container">
           <div class="row">
             <div class="col-sm-7 col-md-8 col-lg-8">
-              <div class="shop-sorting with_padding_small with_background clearfix">
-                <form action="" method="get" class="form-inline filters-form" id="filtersForm">
-                  <span>
-                    <label class="grey" for="orderby">Sort By:</label>
-                    <select class="form-control orderby" name="orderby" id="orderby">
-                      <option value="price" <?php if (isset($_GET['orderby']) && $_GET['orderby'] == 'price') echo 'selected'; ?>>Low To High</option>
-                      <option value="price-desc" <?php if (isset($_GET['orderby']) && $_GET['orderby'] == 'price-desc') echo 'selected'; ?>>High To Low</option>
-                    </select>
-                  </span>
-                  <span>
-                    <a href="#" id="toggle_shop_view" class=""></a>
-                  </span>
-                  <span class="pull-right">
-                    <label class="grey" for="showcount">Show:</label>
-                    <select class="form-control showcount" name="showcount" id="showcount">
-                      <option value="6" <?php if (!isset($_GET['showcount']) || $_GET['showcount'] == 6) echo 'selected'; ?>>6</option>
-                      <option value="12" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 12) echo 'selected'; ?>>12</option>
-                      <option value="18" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 18) echo 'selected'; ?>>18</option>
-                      <option value="24" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 24) echo 'selected'; ?>>24</option>
-                      <option value="30" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 30) echo 'selected'; ?>>30</option>
-                      <option value="36" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 36) echo 'selected'; ?>>36</option>
-                    </select>
-                  </span>
-                </form>
-              </div>
-              <div class="columns-2">
-                <ul id="products" class="products list-unstyled grid-view">
-                  <?php
-                  include '../../controller/readproductfront.php';
-                  ?>
-                </ul>
-              </div>
-              <!-- Pagination links -->
-              <div class="row">
-                <div class="col-sm-12 text-center">
-                  <ul class="pagination">
-                    <!-- Pagination links will be echoed from readproductfront.php -->
-                  </ul>
-                </div>
-              </div>
-              <!-- eof .columns-* -->
+              <!-- <div class="shop-info">
+                Returning customer?
+                <a data-toggle="collapse" href="#registeredForm" aria-expanded="false" aria-controls="registeredForm">Click here to login</a>
+              </div> -->
 
+              <div class="collapse" id="registeredForm">
+                <form class="checkout with_border with_padding form-horizontal" role="form">
+                  <p>
+                    If you have shopped with us before, please enter your
+                    details in the boxes below. If you are a new customer
+                    please proceed to the Billing &amp; Shipping section.
+                  </p>
 
-            </div>
-            <!--eof .col-sm-8 (main content)-->
-
-            <!-- sidebar -->
-            <aside class="col-sm-5 col-md-4 col-lg-4">
-              <div class="widget widget_search">
-                <form action="" method="get" class="form-inline filters-form" id="filtersForm">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text" for="widget-search">Search for:</label>
+                  <div class="form-group">
+                    <label for="username" class="col-sm-3 control-label">
+                      <span class="grey">Nick or email:</span>
+                      <span class="required">*</span>
+                    </label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" name="username" id="username" />
                     </div>
-                    <input id="widget-search" type="text" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" name="search" class="form-control" placeholder="Search" />
-                    <div class="input-group-append">
-                      <button type="submit" class="theme_button">Search</button>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">
+                      <span class="grey">Password:</span>
+                      <span class="required">*</span>
+                    </label>
+                    <div class="col-sm-9">
+                      <input class="form-control" type="password" name="password" id="password" />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                      <div class="checkbox">
+                        <label for="rememberme" class="control-label">
+                          <input name="rememberme" type="checkbox" id="rememberme" value="forever" />
+                          Remember me
+                        </label>
+                      </div>
+                      <input type="submit" class="theme_button color1 topmargin_20" name="login" value="Login" />
+                      <div class="lost_password">
+                        <a href="#">Lost your password?</a>
+                      </div>
                     </div>
                   </div>
                 </form>
               </div>
 
+              <h2>Billing Address</h2>
 
-              <div class="widget widget_shopping_cart">
-                <h3 class="widget-title">Your Cart</h3>
-                <div class="widget_shopping_cart_content">
-                  <ul class="cart_list product_list_widget media-list darklinks">
-
-                  </ul>
-                  <!-- end product list -->
-
-
-                  <p class="buttons">
-                    <a href="shop-cart-right.html" class="theme_button color2">View Cart</a>
-                    <a href="carthistory.php" class="theme_button color1">View History</a>
-                  </p>
+              <form class="form-horizontal checkout shop-checkout" role="form">
+                <div class="form-group">
+                  <label for="billing_province" class="col-sm-3 control-label">
+                    <span class="grey">Province:</span>
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-sm-9">
+                    <select class="form-control" name="billing_province" id="billing_province">
+                      <option value="">Select a province...</option>
+                      <option value="AR">Ariana</option>
+                      <option value="BJ">Beja</option>
+                      <option value="BA">Ben Arous</option>
+                      <option value="BI">Bizerte</option>
+                      <option value="GB">Gabes</option>
+                      <option value="GF">Gafsa</option>
+                      <option value="JE">Jendouba</option>
+                      <option value="KR">Kairouan</option>
+                      <option value="KB">Kebili</option>
+                      <option value="KS">Kasserine</option>
+                      <option value="LK">Le Kef</option>
+                      <option value="MA">Mahdia</option>
+                      <option value="MN">Manouba</option>
+                      <option value="ME">Medenine</option>
+                      <option value="MO">Monastir</option>
+                      <option value="NA">Nabeul</option>
+                      <option value="SF">Sfax</option>
+                      <option value="SD">Sidi Bouzid</option>
+                      <option value="SI">Siliana</option>
+                      <option value="SO">Sousse</option>
+                      <option value="TA">Tataouine</option>
+                      <option value="TO">Tozeur</option>
+                      <option value="TU">Tunis</option>
+                      <option value="ZA">Zaghouan</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
+                <div class="form-group validate-required" id="billing_name_field">
+                  <label for="billing_name" class="col-sm-3 control-label">
+                    <span class="grey">Full Name:</span>
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="billing_name" id="billing_name" placeholder="" value="" />
+                  </div>
+                </div>
 
+
+                <div class="form-group address-field validate-required" id="billing_address_fields">
+                  <label for="billing_address" class="col-sm-3 control-label">
+                    <span class="grey">Address:</span>
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="billing_address" id="billing_address" placeholder="" value="" />
+                  </div>
+                </div>
+
+                <div class="form-group validate-required validate-email" id="billing_email_field">
+                  <label for="billing_email" class="col-sm-3 control-label">
+                    <span class="grey">Email Address:</span>
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="billing_email" id="billing_email" placeholder="" value="" />
+                  </div>
+                </div>
+                <div class="form-group validate-required validate-phone" id="billing_phone_field">
+                  <label for="billing_phone" class="col-sm-3 control-label">
+                    <span class="grey">Phone:</span>
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="billing_phone" id="billing_phone" placeholder="" value="" />
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="order_comments" class="col-sm-3 control-label">
+                    <span class="grey">Order Notes:</span>
+                  </label>
+                  <div class="col-sm-9">
+                    <textarea name="order_comments" class="form-control" id="order_comments" placeholder="" rows="5"></textarea>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!--eof .col-sm-8 (main content)-->
+
+            <!-- sidebar -->
+            <aside class="col-sm-5 col-md-4 col-lg-4">
+              <h3 class="widget-title" id="order_review_heading">
+                Your order
+              </h3>
+              <?php include "../../controller/showorderside.php" ?>
+
+              <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
               <script>
-                document.getElementById('orderby').addEventListener('change', function() {
-                  document.getElementById('filtersForm').submit();
-                });
+                $(document).ready(function() {
+                  // When any radio button in the "payment_method" group is changed
+                  $("input[name='payment_method']").change(function() {
+                    // Check if the "Online Payment" option is selected
+                    if ($("#payment_method_online").is(":checked")) {
+                      // Show the modal
+                      $("#paymentModal").modal("show");
+                    } else {
+                      // If not selected, hide the modal (optional)
+                      $("#paymentModal").modal("hide");
+                    }
+                  });
 
-                document.getElementById('showcount').addEventListener('change', function() {
-                  document.getElementById('filtersForm').submit();
+                  // When the "Place order" button is clicked
+                  $("#place_order").click(function() {
+                    // Check if the "Online Payment" option is selected
+                    if ($("#payment_method_online").is(":checked")) {
+                      // Show the modal
+                      $("#paymentModal").modal("show");
+                    }
+                  });
                 });
               </script>
-            </aside>
-            <!-- eof aside sidebar -->
-          </div>
-        </div>
-      </section>
 
+              <div id="payment" class="shop-checkout-payment">
+                <h3 class="widget-title">Payment</h3>
+                <ul class="list1 no-bullets payment_methods methods">
 
-      <footer class="page_footer cs main_color2 table_section section_padding_50 columns_padding_0">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4 col-sm-push-4 text-center">
-              <a href="./" class="logo big text-shadow">
-                Psychologist
-                <span class="small-text">Premium HTML Template</span>
-              </a>
-            </div>
-
-            <div class="col-sm-4 col-sm-pull-4 text-center text-sm-left text-md-left">
-              <div class="widget widget_nav_menu greylinks">
-                <ul class="menu divided_content wide_divider">
-                  <li class="">
-                    <a href="./">Home</a>
+                  <li class=" payment_method_cheque">
+                    <div class="radio">
+                      <label for="payment_method_cheque">
+                        <input id="payment_method_cheque" type="radio" name="payment_method" value="cheque" checked="checked" />
+                        <span class="grey">Cheque Payment</span>
+                      </label>
+                    </div>
                   </li>
-                  <li class="">
-                    <a href="about.html">About</a>
-                  </li>
-                  <li class="">
-                    <a href="services.html">Services</a>
+                  <li class="payment_method_cheque">
+                    <div class="radio">
+                      <label for="payment_method_delivery">
+                        <input id="payment_method_delivery" type="radio" name="payment_method" value="delivery" />
+                        <span class="grey">Payment At Delivery</span>
+                      </label>
+                    </div>
                   </li>
                 </ul>
+                <div class="place-order" style="display: flex; justify-content: space-between;">
+                  <a class="theme_button color1" href="../../controller/validatecart.php?Cart_ID=<?php echo $cart["Cart_ID"] ?>" name="checkout_place_order" id="place_order">Place order</a>
+                  <button type="button" class="place-order theme_button color2" name="payment_method_online" id="payment_method_online" data-toggle="modal" data-target="#paymentModal">Online Payment</button>
+                </div>
               </div>
-            </div>
-
-            <div class="col-sm-4 text-center text-sm-right text-md-right">
-              <div class="widget widget_nav_menu greylinks">
-                <ul class="menu divided_content wide_divider">
-                  <li class="">
-                    <a href="gallery-regular-3-cols.html">Gallery</a>
-                  </li>
-                  <li class="">
-                    <a href="blog-right.html">Blog</a>
-                  </li>
-                  <li class="">
-                    <a href="contact.html">Contacts</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
           </div>
+          </aside>
+          <!-- eof aside sidebar -->
         </div>
-      </footer>
-
-      <section class="cs main_color2 page_copyright section_padding_15">
-        <div class="container with_top_border">
-          <div class="row">
-            <div class="col-sm-12 text-center">
-              <p class="small-text">
-                &copy; 2023 Psychology and Counseling. All Rights Reserved
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
-    <!-- eof #box_wrapper -->
+    </section>
+    <div class="modal fade" tabindex="-1" role="dialog" id="paymentModal">
+      <div class="modal-dialog" style="height: 700px" role="document">
+        <div class="modal-content">
+          <form class="with_padding" method="post" action="">
+            <div class="row">
+              <style>
+                .body-pm {
+                  font-family: 'Arial', sans-serif;
+                  margin: 0;
+                  padding: 0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+
+                .popup-container {
+                  background-color: #fff;
+                  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+                  padding: 30px;
+                  border-radius: 8px;
+                  width: 300px;
+                  text-align: center;
+                }
+
+                h2 {
+                  color: #333;
+                  margin-bottom: 20px;
+                }
+
+                .form-group2 {
+                  margin-bottom: 20px;
+                }
+
+                .form-group2 label {
+                  font-weight: bold;
+                  margin-bottom: 5px;
+                  display: block;
+                  color: #555;
+                }
+
+                .form-group2 input {
+                  width: 100%;
+                  padding: 10px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                  box-sizing: border-box;
+                }
+
+                .submit-button {
+                  background-color: #4caf50;
+                  color: #fff;
+
+                  cursor: pointer;
+                  transition: background-color 0.3s;
+                }
+
+                .submit-button:hover {
+                  background-color: #45a049;
+                }
+              </style>
+
+              <div class="body-pm">
+                <div class="popup-container">
+                  <h2>Online Payment</h2>
+                  <div class="form-group2">
+                    <label for="card-number"></label>
+                    <input type="text" id="card-number" placeholder="Enter card number">
+                  </div>
+                  <div class="form-group2">
+                    <label for="expiry-date"></label>
+                    <input type="text" id="expiry-date" placeholder="MM/YYYY">
+                  </div>
+                  <div class="form-group2">
+                    <label for="cvv"></label>
+                    <input type="text" id="cvv" placeholder="Enter CVV">
+                  </div>
+
+                  <div class="contact-form-submit">
+                    <button type="submit" id="contact_form_submit" name="contact_submit" class="theme_button color1" style="padding: 12px; border: none; border-radius: 4px;">Pay Now!</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <footer class="page_footer cs main_color2 table_section section_padding_50 columns_padding_0">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4 col-sm-push-4 text-center">
+            <a href="./" class="logo big text-shadow">
+              Psychologist
+              <span class="small-text">Premium HTML Template</span>
+            </a>
+          </div>
+
+          <div class="col-sm-4 col-sm-pull-4 text-center text-sm-left text-md-left">
+            <div class="widget widget_nav_menu greylinks">
+              <ul class="menu divided_content wide_divider">
+                <li class="">
+                  <a href="./">Home</a>
+                </li>
+                <li class="">
+                  <a href="about.html">About</a>
+                </li>
+                <li class="">
+                  <a href="services.html">Services</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-sm-4 text-center text-sm-right text-md-right">
+            <div class="widget widget_nav_menu greylinks">
+              <ul class="menu divided_content wide_divider">
+                <li class="">
+                  <a href="gallery-regular-3-cols.html">Gallery</a>
+                </li>
+                <li class="">
+                  <a href="blog-right.html">Blog</a>
+                </li>
+                <li class="">
+                  <a href="contact.html">Contacts</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <section class="cs main_color2 page_copyright section_padding_15">
+      <div class="container with_top_border">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <p class="small-text">
+              &copy; 2017 Psychology and Counseling. All Rights Reserved
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- eof #box_wrapper -->
   </div>
   <!-- eof #canvas -->
-
 
   <script src="js/compressed.js"></script>
   <script src="js/main.js"></script>

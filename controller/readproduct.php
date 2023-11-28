@@ -10,9 +10,14 @@ if ($pdo) {
             'price' => 'productPrice',
             'title' => 'productTitle'
         );
-
+        ///DONT TOUCH THIS CODE PLEASE 
         $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'date';
         $orderColumn = isset($columnMap[$orderby]) ? $columnMap[$orderby] : 'productPublishDate';
+
+        // Change default ordering to 'ASC' for the title column
+        $orderColumn = ($orderby === 'title') ? 'productTitle' : $orderColumn;
+
+        $orderDirection = ($orderColumn === 'productTitle') ? 'ASC' : 'DESC';
 
         $showcount = isset($_GET['showcount']) ? $_GET['showcount'] : 5;
         $showcount = in_array($showcount, array(5, 10, 20, 30, 50)) ? $showcount : 5;
@@ -36,7 +41,7 @@ if ($pdo) {
         $offset = ($currentPage - 1) * $showcount;
 
         // Retrieve products for the current page
-        $query = $pdo->prepare("SELECT * FROM product WHERE productTitle LIKE :search ORDER BY $orderColumn DESC LIMIT $showcount OFFSET $offset");
+        $query = $pdo->prepare("SELECT * FROM product WHERE productTitle LIKE :search ORDER BY $orderColumn $orderDirection LIMIT $showcount OFFSET $offset");
         $query->bindValue(':search', "%$search%", PDO::PARAM_STR);
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_ASSOC);

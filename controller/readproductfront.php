@@ -1,5 +1,5 @@
 <?php
-include(__DIR__ . '/../config.php');
+include_once(__DIR__ . '/../config.php');
 
 
 $pdo = config::getConnexion();
@@ -9,32 +9,51 @@ if ($pdo) {
     {
         global $pdo;
         try {
-            $query = $pdo->query("SELECT * FROM product");
+
+            //$query = $pdo->query("SELECT * FROM product");
+            //$products = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            // Default values
+            $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'productPrice';
+            $showcount = in_array(($sc = isset($_GET['showcount']) ? $_GET['showcount'] : 6), [6, 12, 18, 24, 30, 36]) ? $sc : 6;
+            $search = isset($_GET['search']) ? $_GET['search'] : '';
+
+            // Get the total number of records
+            $totalRecordsQuery = $pdo->prepare("SELECT COUNT(*) as total FROM product WHERE productTitle LIKE :search");
+            $totalRecordsQuery->bindValue(':search', "%$search%", PDO::PARAM_STR);
+            $totalRecordsQuery->execute();
+            $totalRecords = $totalRecordsQuery->fetch(PDO::FETCH_ASSOC)['total'];
+
+            // Calculate total pages
+            $totalPages = ceil($totalRecords / $showcount);
+
+            // Get current page
+            $currentPage = max(1, min($totalPages, isset($_GET['page']) ? $_GET['page'] : 1));
+
+            // Map column names
+            $orderColumn = isset($columnMap[$orderby]) ? $columnMap[$orderby] : 'productPrice';
+            $orderColumn = ($orderby === 'title') ? 'productTitle' : $orderColumn;
+
+            // Calculate the offset for the SQL query
+            $offset = ($currentPage - 1) * $showcount;
+
+            // Determine sorting order
+            $orderDirection = (strpos($orderby, '-desc') !== false) ? 'DESC' : 'ASC';
+
+
+            // Retrieve products for the current page
+            $query = $pdo->prepare("SELECT * FROM product WHERE productTitle LIKE :search ORDER BY $orderColumn $orderDirection LIMIT $showcount OFFSET $offset");
+            $query->bindValue(':search', "%$search%", PDO::PARAM_STR);
+            $query->execute();
             $products = $query->fetchAll(PDO::FETCH_ASSOC);
+
+
 
             if ($products) {
                 foreach ($products as $product) {
+
                     $imageData = base64_encode($product['productMedia']);
-                    // Display each product information
-                    // echo "<h2>{$product['productTitle']}</h2>";
-                    // echo "<p>ID: {$product['Product_ID']}</p>";
-                    // echo "<p>Slug: {$product['productSlug']}</p>";
-                    // echo "<p>Price: {$product['productPrice']}</p>";
-                    // echo "<p>Short Description: {$product['productShortDesc']}</p>";
-                    // echo "<p>Description: {$product['productDesc']}</p>";
-                    // echo "<p>Publish Date: {$product['productPublishDate']}</p>";
-                    // echo "<p>Publish Time: {$product['productPublishTime']}</p>";
-                    // echo "<p>Category: {$product['productCategory']}</p>";
-                    // echo "<p>Tags: {$product['productTags']}</p>";
-                    // echo "<p>Media: {$product['productMedia']}</p>";
 
-                    // // Add link for updating the product
-                    // echo "<p><a href='updateproduct.php?Product_ID={$product['Product_ID']}'>Update Product</a></p>";
-                    // // delete lol
-                    // echo "<p><a href='deleteproduct.php?Product_ID={$product['Product_ID']}'>Delete Product</a></p>";
-
-
-                    // echo "<hr>";
 ?>
                     <li class="product type-product">
                         <div class="side-item no-content-padding">
@@ -45,19 +64,9 @@ if ($pdo) {
                                             <?php
                                             echo '<img src="data:image/jpeg;base64,' . $imageData . '" alt="Product Image" style="width: 350px; height: 350px; object-fit: cover;" />';
                                             ?>
-                                            <span class="newproduct">New</span>
+
                                         </a>
-                                        <div class="product-buttons">
-                                            <a href="#" rel="nofollow" class="favorite_button">
-                                                Add to Favorites
-                                            </a>
-                                            <a href="#" rel="nofollow" class="added_to_cart">
-                                                Add To Cart
-                                            </a>
-                                            <a href="#" rel="nofollow" class="add_to_cart_button">
-                                                Go to Cart
-                                            </a>
-                                        </div>
+
                                     </div>
                                     <h3>
                                         <a href="shop-product-right.html"><?php echo $product['productTitle'] ?></a>
@@ -98,6 +107,14 @@ if ($pdo) {
                     </li>
 <?php
                 }
+
+                // Add pagination links to the bottom of the table
+                echo '<tr><td colspan="7" class="text-center"><ul class="pagination">';
+                for ($i = 1; $i <= $totalPages; $i++) {
+                    $active = ($i == $currentPage) ? 'class="active"' : '';
+                    echo "<li $active><a href='?page=$i&orderby=$orderby&showcount=$showcount&search=$search'>$i</a></li>";
+                }
+                echo '</ul></td></tr>';
             } else {
                 echo "No products found.";
             }

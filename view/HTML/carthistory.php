@@ -21,7 +21,6 @@
 	<link rel="stylesheet" href="css/animations.css">
 	<link rel="stylesheet" href="css/fonts.css">
 	<link rel="stylesheet" href="css/main.css" class="color-switcher-link">
-	<link rel="stylesheet" href="css/shop.css" class="color-switcher-link">
 	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 
 	<!--[if lt IE 9]>
@@ -77,6 +76,106 @@
 		<div id="box_wrapper">
 
 			<!-- template sections -->
+
+			<section class="page_topline cs table_section table_section_md columns_padding_0">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-3 text-center text-md-left">
+							<ul class="inline-dropdown inline-block divided_content">
+
+								<li class="dropdown login-dropdown">
+									<a class="header-button" data-target="#" href="./" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+										<i class="fa fa-user"></i>
+										<span class="header-button-text">Login</span>
+									</a>
+
+									<div class="dropdown-menu ls with_padding">
+
+										<p>
+											<strong class="grey">If you have an account, please log in:</strong>
+										</p>
+										<form role="form" action="/">
+
+											<div class="form-group">
+												<label for="login_email" class="sr-only">Email address</label>
+												<input type="email" class="form-control" id="login_email" placeholder="Email Address">
+											</div>
+											<div class="form-group">
+												<label for="login_password" class="sr-only">Password</label>
+												<input type="password" class="form-control" id="login_password" placeholder="Password">
+											</div>
+											<div class="checkbox">
+												<input type="checkbox" id="remember_checkbox">
+												<label for="remember_checkbox">
+													Remember Me
+												</label>
+											</div>
+
+											<button type="button" class="theme_button color1 block_button">
+												Log in
+											</button>
+
+										</form>
+										<div class="topmargin_20 darklinks">
+											<a href="#">Forgot Your Password?</a>
+										</div>
+
+									</div>
+								</li>
+
+
+								<a class="header-button" href="#">
+									<i class="fa fa-lock"></i>
+									<span class="header-button-text">Register</span>
+								</a>
+							</ul>
+
+						</div>
+
+						<div class="col-md-6 text-center divided_content">
+
+							<div>
+								<div class="media small-teaser">
+									<div class="media-left">
+										<i class="fa fa-user highlight fontsize_16"></i>
+									</div>
+									<div class="media-body">
+										0 (800) 337 25 25
+									</div>
+								</div>
+							</div>
+
+							<div>
+								<div class="media small-teaser">
+									<div class="media-left">
+										<i class="fa fa-map-marker highlight fontsize_16"></i>
+									</div>
+									<div class="media-body">
+										350 Leverton Cove Road Springfield, MA
+									</div>
+								</div>
+							</div>
+
+							<div>
+								<div class="media small-teaser">
+									<div class="media-left">
+										<i class="fa fa-envelope highlight fontsize_16"></i>
+									</div>
+									<div class="media-body">
+										support@psychologist.com
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-3 text-center text-md-right bottommargin_0">
+							<a href="#appointment" class="theme_button color1 margin_0">Make an appointment</a>
+						</div>
+
+					</div>
+				</div>
+			</section>
 
 			<header class="page_header header_white table_section columns_padding_0 toggler-xs-right">
 				<div class="container-fluid">
@@ -465,7 +564,7 @@
 														<a href="faq.html">FAQ</a>
 													</li>
 													<li>
-														<a href="faq2.html">FAQ 2</a>
+														<a href="faq2.html">Order History</a>
 													</li>
 												</ul>
 											</li>
@@ -661,7 +760,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-12 text-center">
-							<h2>Cart</h2>
+							<h2>Order History</h2>
 							<ol class="breadcrumb divided_content wide_divider">
 								<li>
 									<a href="./">
@@ -669,9 +768,9 @@
 									</a>
 								</li>
 								<li>
-									<a href="#">Shop</a>
+									<a href="#">Pages</a>
 								</li>
-								<li class="active">Cart</li>
+								<li class="active">Order History</li>
 							</ol>
 						</div>
 					</div>
@@ -679,167 +778,85 @@
 			</section>
 
 
-			<section class="ls section_padding_top_100 section_padding_bottom_75 columns_padding_25">
+			<section class="ls section_padding_100 columns_padding_25">
+
 				<div class="container">
+					<div class="row vertical-tabs">
+						<p class="buttons">
+							<a href="shop-right.php" class="theme_button color1">⬅️Back To Shopping</a>
+						</p>
+						<?php include "../../controller/showorderhistory.php" ?>
+
+					</div>
+
+				</div>
+			</section>
+
+
+			<footer class="page_footer cs main_color2 table_section section_padding_50 columns_padding_0">
+				<div class="container">
+
 					<div class="row">
-						<div class="col-sm-7 col-md-8 col-lg-8">
 
-							<div class="table-responsive">
-								<table class="table shop_table cart cart-table">
-									<thead>
-										<tr>
-											<td class="product-info">Product</td>
-											<td class="product-price-td">Price</td>
-											<td class="product-quantity">Quantity</td>
-											<td class="product-subtotal">Subtotal</td>
-											<td class="product-remove">&nbsp;</td>
-										</tr>
-									</thead>
-									<tbody>
-										<?php include "../../controller/readcartproducts.php" ?>
-									</tbody>
-								</table>
-							</div>
-
-							<div class="cart-buttons">
-								<a class="theme_button" href="./shop-right.php">Countinue Shopping</a>
-
-								<!-- <input type="submit" class="theme_button color1" name="update_cart" value="Update Cart"> -->
-								<a href="shop-checkout-right.php" class="theme_button color2">Proceed to Checkout</a>
-								<!-- <button type="submit" class="theme_button color2">Proceed to Checkout</button> -->
-							</div>
-
-
-							<div class="cart-collaterals">
-								<div class="cart_totals">
-									<h4>Cart Totals</h4>
-									<table class="table">
-										<tbody>
-											<tr class="cart-subtotal">
-												<td>Cart Subtotal</td>
-												<td>
-													<span class="currencies">$</span>
-													<span class="amount"><?php echo $tot ?></span>
-												</td>
-											</tr>
-											<tr class="shipping">
-												<td>Shipping and Handling</td>
-												<td>
-													$ 10
-												</td>
-											</tr>
-											<tr class="order-total">
-												<td class="grey">Order Total</td>
-												<td>
-													<strong class="grey">
-														<span class="currencies">$</span>
-														<span class="amount"><?php echo $tot + 10 ?></span>
-													</strong>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="coupon with_padding_small with_background">
-										<h3 class="topmargin_0">Discount Codes</h3>
-										<p>Enter coupon code if you have one</p>
-										<div class="form-group">
-											<label class="sr-only" for="coupon_code">Coupon:</label>
-											<input type="text" name="coupon_code" class="form-control" id="coupon_code" value="" placeholder="Coupon code">
-										</div>
-										<a class="theme_button" href="#">Apply Coupon</a>
-									</div>
-								</div>
-
-
-							</div>
-
+						<div class="col-sm-4 col-sm-push-4 text-center">
+							<a href="./" class="logo big text-shadow">
+								Psychologist
+								<span class="small-text">Premium HTML Template</span>
+							</a>
 						</div>
-						<!--eof .col-sm-8 (main content)-->
 
-						<!-- sidebar -->
-						<aside class="col-sm-5 col-md-4 col-lg-4">
+						<div class="col-sm-4 col-sm-pull-4 text-center text-sm-left text-md-left">
+							<div class="widget widget_nav_menu greylinks">
 
+								<ul class="menu divided_content wide_divider">
+									<li class="">
+										<a href="./">Home</a>
+									</li>
+									<li class="">
+										<a href="about.html">About</a>
+									</li>
+									<li class="">
+										<a href="services.html">Services</a>
+									</li>
+								</ul>
 
+							</div>
+						</div>
 
+						<div class="col-sm-4 text-center text-sm-right text-md-right">
+							<div class="widget widget_nav_menu greylinks">
 
-							</ul>
+								<ul class="menu divided_content wide_divider">
+									<li class="">
+										<a href="gallery-regular-3-cols.html">Gallery</a>
+									</li>
+									<li class="">
+										<a href="blog-right.html">Blog</a>
+									</li>
+									<li class="">
+										<a href="contact.html">Contacts</a>
+									</li>
+								</ul>
+
+							</div>
+						</div>
+
 					</div>
-
-					</aside>
-					<!-- eof aside sidebar -->
 				</div>
+			</footer>
+
+			<section class="cs main_color2 page_copyright section_padding_15">
+				<div class="container with_top_border">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<p class="small-text">&copy; 2017 Psychology and Counseling. All Rights Reserved</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
 		</div>
-		</section>
-
-		<footer class="page_footer cs main_color2 table_section section_padding_50 columns_padding_0">
-			<div class="container">
-
-				<div class="row">
-
-					<div class="col-sm-4 col-sm-push-4 text-center">
-						<a href="./" class="logo big text-shadow">
-							Psychologist
-							<span class="small-text">Premium HTML Template</span>
-						</a>
-					</div>
-
-					<div class="col-sm-4 col-sm-pull-4 text-center text-sm-left text-md-left">
-						<div class="widget widget_nav_menu greylinks">
-
-							<ul class="menu divided_content wide_divider">
-								<li class="">
-									<a href="./">Home</a>
-								</li>
-								<li class="">
-									<a href="about.html">About</a>
-								</li>
-								<li class="">
-									<a href="services.html">Services</a>
-								</li>
-							</ul>
-
-						</div>
-					</div>
-
-					<div class="col-sm-4 text-center text-sm-right text-md-right">
-						<div class="widget widget_nav_menu greylinks">
-
-							<ul class="menu divided_content wide_divider">
-								<li class="">
-									<a href="gallery-regular-3-cols.html">Gallery</a>
-								</li>
-								<li class="">
-									<a href="blog-right.html">Blog</a>
-								</li>
-								<li class="">
-									<a href="contact.html">Contacts</a>
-								</li>
-							</ul>
-
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</footer>
-
-		<section class="cs main_color2 page_copyright section_padding_15">
-			<div class="container with_top_border">
-				<div class="row">
-					<div class="col-sm-12 text-center">
-						<p class="small-text">&copy; 2017 Psychology and Counseling. All Rights Reserved</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-	</div>
-	<!-- eof #box_wrapper -->
+		<!-- eof #box_wrapper -->
 	</div>
 	<!-- eof #canvas -->
 

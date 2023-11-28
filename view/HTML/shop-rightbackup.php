@@ -675,67 +675,94 @@
           <div class="row">
             <div class="col-sm-7 col-md-8 col-lg-8">
               <div class="shop-sorting with_padding_small with_background clearfix">
-                <form action="" method="get" class="form-inline filters-form" id="filtersForm">
+                <form class="form-inline">
                   <span>
                     <label class="grey" for="orderby">Sort By:</label>
                     <select class="form-control orderby" name="orderby" id="orderby">
-                      <option value="price" <?php if (isset($_GET['orderby']) && $_GET['orderby'] == 'price') echo 'selected'; ?>>Low To High</option>
-                      <option value="price-desc" <?php if (isset($_GET['orderby']) && $_GET['orderby'] == 'price-desc') echo 'selected'; ?>>High To Low</option>
+                      <option value="menu_order" selected>Default</option>
+                      <option value="price">Low To High</option>
+                      <option value="price-desc">High To Low</option>
                     </select>
                   </span>
+
                   <span>
+                    <a href="#" id="sort_view">
+                      <i class="fa fa-long-arrow-up"></i>
+                    </a>
+
                     <a href="#" id="toggle_shop_view" class=""></a>
                   </span>
+
                   <span class="pull-right">
                     <label class="grey" for="showcount">Show:</label>
                     <select class="form-control showcount" name="showcount" id="showcount">
-                      <option value="6" <?php if (!isset($_GET['showcount']) || $_GET['showcount'] == 6) echo 'selected'; ?>>6</option>
-                      <option value="12" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 12) echo 'selected'; ?>>12</option>
-                      <option value="18" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 18) echo 'selected'; ?>>18</option>
-                      <option value="24" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 24) echo 'selected'; ?>>24</option>
-                      <option value="30" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 30) echo 'selected'; ?>>30</option>
-                      <option value="36" <?php if (isset($_GET['showcount']) && $_GET['showcount'] == 36) echo 'selected'; ?>>36</option>
+                      <option value="6" selected>8</option>
+                      <option value="12">12</option>
+                      <option value="18">18</option>
+                      <option value="24">24</option>
+                      <option value="30">26</option>
+                      <option value="36">36</option>
                     </select>
                   </span>
                 </form>
               </div>
+
               <div class="columns-2">
                 <ul id="products" class="products list-unstyled grid-view">
                   <?php
-                  include '../../controller/readproductfront.php';
+                  include '../../controller/readproductfront.php'; //ici affichage dweyet lkol
+
                   ?>
+
+
                 </ul>
-              </div>
-              <!-- Pagination links -->
-              <div class="row">
-                <div class="col-sm-12 text-center">
-                  <ul class="pagination">
-                    <!-- Pagination links will be echoed from readproductfront.php -->
-                  </ul>
-                </div>
               </div>
               <!-- eof .columns-* -->
 
-
+              <div class="row">
+                <div class="col-sm-12 text-center">
+                  <ul class="pagination">
+                    <li class="disabled">
+                      <a href="#">
+                        <span class="sr-only">Prev</span>
+                        <i class="fa fa-angle-left"></i>
+                      </a>
+                    </li>
+                    <li class="active">
+                      <a href="#">1</a>
+                    </li>
+                    <li>
+                      <a href="#">2</a>
+                    </li>
+                    <li>
+                      <a href="#">3</a>
+                    </li>
+                    <li>
+                      <a href="#">4</a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <span class="sr-only">Next</span>
+                        <i class="fa fa-angle-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
             <!--eof .col-sm-8 (main content)-->
 
             <!-- sidebar -->
             <aside class="col-sm-5 col-md-4 col-lg-4">
               <div class="widget widget_search">
-                <form action="" method="get" class="form-inline filters-form" id="filtersForm">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text" for="widget-search">Search for:</label>
-                    </div>
-                    <input id="widget-search" type="text" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" name="search" class="form-control" placeholder="Search" />
-                    <div class="input-group-append">
-                      <button type="submit" class="theme_button">Search</button>
-                    </div>
+                <form method="get" class="searchform form-inline" action="./">
+                  <div class="form-group">
+                    <label class="screen-reader-text" for="widget-search">Search for:</label>
+                    <input id="widget-search" type="text" value="" name="search" class="form-control" placeholder="Search" />
                   </div>
+                  <button type="submit" class="theme_button">Search</button>
                 </form>
               </div>
-
 
               <div class="widget widget_shopping_cart">
                 <h3 class="widget-title">Your Cart</h3>
@@ -748,20 +775,35 @@
 
                   <p class="buttons">
                     <a href="shop-cart-right.html" class="theme_button color2">View Cart</a>
-                    <a href="carthistory.php" class="theme_button color1">View History</a>
+                    <a href="shop-checkout-right.html" class="theme_button">Checkout</a>
                   </p>
                 </div>
               </div>
 
-              <script>
-                document.getElementById('orderby').addEventListener('change', function() {
-                  document.getElementById('filtersForm').submit();
-                });
+              <div class="widget widget_price_filter">
+                <h3 class="widget-title">Price Filter</h3>
+                <!-- price slider -->
+                <form method="get" action="./" class="form-inline">
+                  <div class="slider-range-price"></div>
 
-                document.getElementById('showcount').addEventListener('change', function() {
-                  document.getElementById('filtersForm').submit();
-                });
-              </script>
+                  <div class="form-group">
+                    <label class="grey" for="slider_price_min">From:</label>
+                    <input type="text" class="slider_price_min form-control text-center" id="slider_price_min" readonly />
+                  </div>
+
+                  <div class="form-group">
+                    <label class="grey" for="slider_price_max"> to:</label>
+                    <input type="text" class="slider_price_max form-control text-center" id="slider_price_max" readonly />
+                  </div>
+
+                  <div class="text-right">
+                    <button type="submit" class="theme_button small_button color1">
+                      Filter
+                    </button>
+                  </div>
+                </form>
+              </div>
+
             </aside>
             <!-- eof aside sidebar -->
           </div>
@@ -829,7 +871,6 @@
     <!-- eof #box_wrapper -->
   </div>
   <!-- eof #canvas -->
-
 
   <script src="js/compressed.js"></script>
   <script src="js/main.js"></script>
