@@ -1,8 +1,10 @@
 function validerForm(event) {
   var titre = document.getElementById("post_title").value.trim();
   var content = document.getElementById("post_content").value.trim();
-  var categorie = document.getElementById("with-selected").value;
   var img = document.getElementById("img");
+  var checkboxes = document.querySelectorAll(
+    'input[name="post_categorie[]"]:checked'
+  );
 
   clearAlerts();
 
@@ -27,18 +29,18 @@ function validerForm(event) {
     erreur = true;
   }
 
-  if (categorie == "") {
-    event.preventDefault();
-    messageErreur("Choisissez une categorie pour votre post !");
-    erreur = true;
-  }
-
   if (img.files.length != 0) {
     if (!img.files[0].type.startsWith("image/")) {
       event.preventDefault();
       messageErreur("Choisissez un fichier de type image!");
       erreur = true;
     }
+  }
+
+  if (checkboxes.length === 0) {
+    event.preventDefault();
+    messageErreur("Sélectionnez au moins un tag !");
+    erreur = true;
   }
 
   redirigerVersAlerte();
@@ -75,8 +77,10 @@ function redirigerVersAlerte() {
 function validerFormCreation(event) {
   var titre = document.getElementById("post_title").value.trim();
   var content = document.getElementById("post_content").value.trim();
-  var categorie = document.getElementById("with-selected").value;
   var img = document.getElementById("img");
+  var checkboxes = document.querySelectorAll(
+    'input[name="post_categorie[]"]:checked'
+  );
 
   clearAlerts();
 
@@ -101,12 +105,6 @@ function validerFormCreation(event) {
     erreur = true;
   }
 
-  if (categorie == "") {
-    event.preventDefault();
-    messageErreur("Choisissez une categorie pour votre post !");
-    erreur = true;
-  }
-
   if (img.files.length != 0) {
     if (!img.files[0].type.startsWith("image/")) {
       event.preventDefault();
@@ -116,6 +114,12 @@ function validerFormCreation(event) {
   } else {
     event.preventDefault();
     messageErreur("Choisissez une image!");
+    erreur = true;
+  }
+
+  if (checkboxes.length === 0) {
+    event.preventDefault();
+    messageErreur("Sélectionnez au moins un tag !");
     erreur = true;
   }
 

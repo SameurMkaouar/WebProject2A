@@ -9,7 +9,9 @@
             $post["post_img"] = file_get_contents($imgFile["tmp_name"]);
             $post["post_title"] = $ptitle;
             $post["post_content"] = $pcontent;
-            $post["post_categorie"] = $pcatg;
+            $post["post_categorie"] = implode('-', $pcatg);
+
+            echo $post["post_categorie"];
 
             $Post = new Post();
             $Post->createPost($post);

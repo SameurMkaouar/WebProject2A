@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     class="author_url"
                     rel="external nofollow"
                     href="#"
-                    >JaaferJaafour3000</a
+                    >Ahmed Mazigh</a
                 >
                 <span class="comment-date small-text highlight">
                     <time

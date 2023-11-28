@@ -35,6 +35,36 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
     <div class="row form-group">
+                      <label class="col-lg-3 control-label">Post Tags: </label>
+                      <div class="col-lg-9">
+                        <div class="checkbox">
+                          <input
+                            type="checkbox"
+                            id="option1"
+                            name="post_categorie[]"
+                            value="discussion"
+                          />
+                          <label for="option1">Discussion</label><br />
+                          <input
+                            type="checkbox"
+                            id="option2"
+                            name="post_categorie[]"
+                            value="question"
+                          />
+                          <label for="option2">Question</label><br />
+
+                          <input
+                            type="checkbox"
+                            id="option3"
+                            name="post_categorie[]"
+                            value="info"
+                          />
+                          <label for="option3">Info</label><br />
+                        </div>
+                      </div>
+  </div>
+
+    <div class="row form-group">
       <label class="col-lg-3 control-label"
         >Post Content:
       </label>
@@ -44,22 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         >
       </div>
     </div>
-    <div class="row form-group">
-                      <label class="col-lg-3 control-label">Post Category:</label>
-                      <div class="col-lg-9">
-                        <select
-                          class="form-control with-selected"
-                          name="post_categorie"
-                          id="with-selected"
-                          value="${post.post_categorie}" 
-                          selected
-                        >
-                          <option value="cat1">Categorie 1</option>
-                          <option value="cat2">Categorie 2</option>
-                          <option value="cat3">Categorie 3</option>
-                        </select>
-                      </div>
-    </div>
+  
     <div class="row form-group">
                       <label class="col-lg-3 control-label">Change Post Image: </label>
                       <div class="col-lg-9">

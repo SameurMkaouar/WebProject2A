@@ -2,12 +2,12 @@
         require("../../Controller/Post.php");
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imgFile = isset($_FILES['image']) ? $_FILES['image'] : '';
-            var_dump($imgFile);
+            $pcatg = $_POST["post_categorie"];
 
             $newPost["post_content"] = $_POST["post_content"];
             $newPost["post_title"] = $_POST["post_title"];
             $newPost["id_post"] = $_POST["id_post"];
-            $newPost["post_categorie"] = $_POST["post_categorie"];
+            $newPost["post_categorie"] = implode('-', $pcatg);
 
 
             $Post = new Post();

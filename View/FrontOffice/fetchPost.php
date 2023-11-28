@@ -19,6 +19,9 @@
     $singlePost["post_img"] = base64_encode($post["post_img"]);
     $singlePost["id_post"] = $id;
     $singlePost["id_user"] = $post["id_user"];
+    $singlePost["post_likes"] = $post["post_likes"];
+    $singlePost["post_dislikes"] = $post["post_dislikes"];
+    $singlePost["post_comments"] = $post["post_comments"];
 
 
     $jsonData = json_encode($singlePost, JSON_UNESCAPED_UNICODE);

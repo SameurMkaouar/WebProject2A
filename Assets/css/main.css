@@ -10366,6 +10366,12 @@ aside .widget_tag_cloud a:hover {
   color: #ffffff;
 }
 
+.widget_tag_cloud a.active {
+  background-color: #91d0cc;
+  border-color: #91d0cc;
+  color: #ffffff;
+}
+
 /* widget_popular_entries */
 .widget_popular_entries h4 {
   margin-bottom: 10px;

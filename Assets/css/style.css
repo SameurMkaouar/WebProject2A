@@ -18,3 +18,39 @@
   display: flex;
   justify-content: space-between;
 }
+
+.rating {
+  width: 100%;
+  text-align: center;
+}
+
+.like,
+.dislike,
+.comments {
+  display: inline-block;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.dislike:hover,
+.like:hover {
+  color: #2ebdd1;
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.active {
+  color: #2ebdd1;
+}
+
+.widget_tag_cloud a.active {
+  background-color: #91d0cc;
+  border-color: #91d0cc;
+  color: #ffffff;
+}
+
+#tags {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
