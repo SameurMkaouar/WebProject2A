@@ -25,7 +25,7 @@ if ($pdo) {
             ]);
 
             // Redirect to the product list or show a success message
-            header("Location: ../view/contact.php");
+            header("Location: ../view/contact2.php");
             exit();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

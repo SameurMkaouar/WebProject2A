@@ -8,11 +8,12 @@ if ($pdo) {
         global $pdo;
 
         try {
-            $query = $pdo->prepare("INSERT INTO ticket (name, subject, message, date) VALUES (:name, :subject, :message, NOW())");
+            $query = $pdo->prepare("INSERT INTO ticket (name, email,subject, message, date) VALUES (:name, :email,:subject, :message, NOW())");
             $query->execute([
                 'name' => $_POST['name'],
                 'subject' => $_POST['subject'],
                 'message' => $_POST['message'],
+                'email' => $_POST['email'],
             ]);
             echo "Ticket created successfully!";
         } catch (PDOException $e) {
@@ -22,7 +23,7 @@ if ($pdo) {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Createticket();
-        header('Location: ../view/contact.php');
+        header('Location: ../view/contact2.php');
     }
 } else {
     echo "Error: Unable to connect to the database.";

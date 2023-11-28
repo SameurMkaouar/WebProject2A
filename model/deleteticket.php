@@ -12,7 +12,7 @@ if ($pdo) {
             $query->execute(['ticketid' => $ticketid]);
 
             // Redirect to the product list after deletion
-            header('Location: ../view/contact.php');
+            header('Location: ../view/contact2.php');
             exit();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
