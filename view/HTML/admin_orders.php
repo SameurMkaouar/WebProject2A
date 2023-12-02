@@ -333,107 +333,7 @@
 
         <div class="pull-right big-header-buttons">
           <ul class="inline-dropdown inline-block">
-            <li class="dropdown header-notes-dropdown">
-              <a class="header-button" data-target="#" href="./" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                <i class="fa fa-bell-o grey"></i>
-                <span class="header-button-text">Messages</span>
-                <span class="header-dropdown-number"> 12 </span>
-              </a>
-
-              <div class="dropdown-menu ls">
-                <div class="dropdwon-menu-title with_background">
-                  <strong>12 Pending</strong> Notifications
-
-                  <div class="pull-right darklinks">
-                    <a href="#">View All</a>
-                  </div>
-                </div>
-                <ul class="list-unstyled">
-                  <li>
-                    <div class="media with_background">
-                      <div class="media-left media-middle">
-                        <div class="teaser_icon label-success">
-                          <i class="fa fa-user"></i>
-                        </div>
-                      </div>
-                      <div class="media-body media-middle">
-                        <span class="grey"> New user registered </span>
-                        <span class="pull-right">Just Now</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media with_background">
-                      <div class="media-left media-middle">
-                        <div class="teaser_icon label-info">
-                          <i class="fa fa-bullhorn"></i>
-                        </div>
-                      </div>
-                      <div class="media-body media-middle">
-                        <span class="grey"> New user registered </span>
-                        <span class="pull-right">20 minutes</span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div class="media with_background">
-                      <div class="media-left media-middle">
-                        <div class="teaser_icon label-danger">
-                          <i class="fa fa-bolt"></i>
-                        </div>
-                      </div>
-                      <div class="media-body media-middle">
-                        <span class="grey"> Server overloaded </span>
-                        <span class="pull-right">1 hour</span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div class="media with_background">
-                      <div class="media-left media-middle">
-                        <div class="teaser_icon label-success">
-                          <i class="fa fa-shopping-cart"></i>
-                        </div>
-                      </div>
-                      <div class="media-body media-middle">
-                        <span class="grey"> New order </span>
-                        <span class="pull-right">3 hours</span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div class="media with_background">
-                      <div class="media-left media-middle">
-                        <div class="teaser_icon label-warning">
-                          <i class="fa fa-bell-o"></i>
-                        </div>
-                      </div>
-                      <div class="media-body media-middle">
-                        <span class="grey"> Long database query </span>
-                        <span class="pull-right">4 hours</span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div class="media with_background">
-                      <div class="media-left media-middle">
-                        <div class="teaser_icon label-success">
-                          <i class="fa fa-user"></i>
-                        </div>
-                      </div>
-                      <div class="media-body media-middle">
-                        <span class="grey"> New user registered </span>
-                        <span class="pull-right">4 hours</span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </li>
+            <?php include '../../controller/notifications.php'; ?>
 
             <li class="dropdown header-notes-dropdown">
               <a class="header-button" data-target="#" href="./" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
@@ -717,45 +617,10 @@
                 <!-- .row -->
 
                 <div class="table-responsive">
-                  <table class="table table-striped table-bordered">
-                    <tr>
-                      <td class="media-middle text-center">
-                        <input type="checkbox" />
-                      </td>
-                      <th>Order:</th>
-                      <th>Customer:</th>
-                      <th>Date:</th>
-                      <th>Total:</th>
-                      <th>Status:</th>
-                    </tr>
-                    <tr class="item-editable">
-                      <td class="media-middle text-center">
-                        <input type="checkbox" />
-                      </td>
-                      <td class="media-middle">
-                        <p> order id </p>
-                      </td>
-                      <td>
-                        <div class="media">
-                          <div class="media-left">
-                            <!-- <img src="images/team/01.jpg" alt="..." /> -->
-                          </div>
-                          <div class="media-body">
-                            <h5>
-                              <a href="admin_profile.html">Alex Walker</a>
-                            </h5>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="media-middle">
-                        <time datetime="2017-02-08T20:25:23+00:00" class="entry-date">08.02.2017 at 20:25</time>
-                      </td>
-                      <td class="media-middle">$315.00</td>
 
-                      <td class="media-middle">Delivered</td>
-                    </tr>
+                  <?php include '../../controller/showorderhistoryadmin.php'; ?>
 
-                  </table>
+
                 </div>
                 <!-- .table-responsive -->
               </div>
@@ -767,37 +632,7 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="row">
-                <div class="col-md-6">
-                  <ul class="pagination">
-                    <li class="disabled">
-                      <a href="#">
-                        <span class="sr-only">Prev</span>
-                        <i class="fa fa-angle-left"></i>
-                      </a>
-                    </li>
-                    <li class="active">
-                      <a href="#">1</a>
-                    </li>
-                    <li>
-                      <a href="#">2</a>
-                    </li>
-                    <li>
-                      <a href="#">3</a>
-                    </li>
-                    <li>
-                      <a href="#">4</a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span class="sr-only">Next</span>
-                        <i class="fa fa-angle-right"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-md-6 text-md-right">
-                  Showing 1 to 6 of 12 items
-                </div>
+
               </div>
             </div>
           </div>
