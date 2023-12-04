@@ -17,7 +17,7 @@ if ($count > 0) {
         $data_arr[$i]['title'] = $data_row['nomevent'];
         $data_arr[$i]['start'] = date("Y-m-d", strtotime($data_row['dateevent']));
         $data_arr[$i]['end'] = date("Y-m-d", strtotime($data_row['dateevent']));
-        $data_arr[$i]['color'] = 'yellow'; // 'green'; pass colour name
+        $data_arr[$i]['color'] = 'grey'; // 'green'; pass colour name
         $i++;
     }
 

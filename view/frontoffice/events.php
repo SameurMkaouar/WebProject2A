@@ -50,10 +50,16 @@ $total_recordse=$user->paginationCOUNTER($sql);
 	<link rel="stylesheet" href="..\..\assets\frontoffice\css\animations.css">
 	<link rel="stylesheet" href="..\..\assets\frontoffice\css\fonts.css">
 	<link rel="stylesheet" href="..\..\assets\frontoffice\css\main.css" class="color-switcher-link">
-	<link rel="stylesheet" href="eventSearch.css">
+	<link rel="stylesheet" href="..\..\assets\frontoffice\css\eventSearch.css">
 	<link href="css/tooplate-kool-form-pack.css" rel="stylesheet">
 	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+	<script src="../../assets/frontoffice/js/map.js"></script>
+	<!-- Inclure jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Inclure le fichier JavaScript externe -->
+<script src="../../assets/frontoffice/js/favoris.js"></script>
 
 </head>
 
@@ -814,6 +820,34 @@ $total_recordse=$user->paginationCOUNTER($sql);
     background-color: #fff;
     color: #333;
   }
+  .grayscale-image {
+        filter: grayscale(100%);
+    }
+
+    .complet-stamp {
+        background-color: black ;
+        color: white;
+		font-weight: bold; 
+        padding: 5px;
+        border-radius: 5px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+	
+
+.favorite-icon {
+    /* Styles de l'icône du cœur par défaut */
+    color: black; /* Couleur noire par défaut */
+    /* Autres styles... */
+}
+
+.favorite-icon.favorited {
+    /* Styles de l'icône du cœur lorsqu'elle est favoris (rouge) */
+    color: red;
+    /* Autres styles... */
+}
+
 </style>
                 <div class="col-sm-10 col-sm-push-1">
 				<div class="box">
@@ -822,46 +856,61 @@ $total_recordse=$user->paginationCOUNTER($sql);
 					<i class="ri-search-2-line"></i> 	
 				</form>	                          
 				</div> 
+				<button id="mes-favoris-btn" class="theme_button color2">
+    <i class="glyphicon glyphicon-heart"></i> Mes Favoris
+</button>
+<section id="favorites-section" style="display: none;">
+    <div id="favorites-list"></div>
+</section>
                         <br> 
-				<?php foreach ($query as $even) { ?>
-                        <article class="post side-item content-padding with_shadow">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="item-media">
-                                        <img src="data:image/jpeg;base64,<?php echo base64_encode($even["image"]); ?>" alt="Event Image" class="mx-auto">
-                                        <div class="media-links">
-                                            <a class="abs-link" title="" href="event-single.php "></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="item-content">
-                                        <h3>
-                                            <a href="event-single-full.html"><?php echo $even["nomevent"]; ?></a>
-                                        </h3>
-                                        <p class="item-meta grey darklinks content-justify fontsize_16">
-                                            <span>
-                                                <i class="fa fa-calendar highlight"></i> <?php echo $even["dateevent"]; ?>
-                                            </span>
-                                            <span>
-                                                <i class="fa fa-map-marker highlight"></i> <?php echo $even["location"]; ?>
-                                            </span>
-                                        </p>
-                                        <p>
-                                            <?php echo $even["descriptionevent"]; ?>
-                                        </p>
-										<?php if($even['nbevent'] == 0) { ?>
-											<h3 style="color: red;">
-                                            <strong>Complet!</strong>
-                                        </h3>
-										<?php } ?>
-										<?php if($even['nbevent'] != 0) { ?>
-                                          <a style="margin-top:-20px;"  href="event-single.php?id=<?php echo $even['idevent']; ?>">S'inscrire</a>
-										  <?php } ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+						<?php foreach ($query as $even) { ?>
+    <article class="post side-item content-padding with_shadow" data-event-id="<?php echo $even['idevent']; ?>">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="item-media">
+                    <?php
+                    $imageBase64 = base64_encode($even["image"]);
+                    $imageSrc = "data:image/jpeg;base64,$imageBase64";
+                    $isComplete = $even['nbevent'] == 0;
+                    $imageClass = $isComplete ? 'grayscale-image' : '';
+                    echo "<img src=\"$imageSrc\" alt=\"Event Image\" class=\"mx-auto $imageClass\">";
+                    ?>
+                    <div class="media-links">
+                    </div>
+                    <?php if ($isComplete) { ?>
+						
+                        <div class="complet-stamp">Complet !</div>
+                    <?php } ?>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="item-content">
+                    <h3>
+                      <?php echo $even["nomevent"]; ?>
+                    </h3>
+                    <p class="item-meta grey darklinks content-justify fontsize_16">
+                        <span>
+                            <i class="fa fa-calendar highlight"></i> <?php echo $even["dateevent"]; ?>
+                        </span>
+                        <span>
+						<i class="fa fa-heart favorite-icon" data-event-id="<?php echo $even['idevent']; ?>"></i>
+                            <?php
+                            // Utilisez l'adresse complète dans "location"
+                            $address = $even["location"];
+                            ?>
+                            <i class="fa fa-map-marker highlight map-marker" data-location="<?php echo $address; ?>" style="cursor: pointer;"></i> <?php echo $address; ?>
+                        </span>
+                    </p>
+                    <p>
+                        <?php echo $even["descriptionevent"]; ?>
+                    </p>
+                    <?php if ($even['nbevent'] != 0) { ?>
+                        <a href="event-single.php?id=<?php echo $even['idevent']; ?>">S'inscrire</a>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </article>
                     <?php } ?>
 					<div class="pagination" style="padding-left:40%;">    
       <?php      

@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="..\..\assets\frontoffice\css\fonts.css">
 	<link rel="stylesheet" href="..\..\assets\frontoffice\css\main.css" class="color-switcher-link">
 	<link rel="stylesheet" href="..\..\assets\frontoffice\css\dashboard.css" class="color-switcher-link">
-	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+	<script src="../../assets/frontoffice/js/vendor/modernizr-2.6.2.min.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -200,7 +200,7 @@
 							<h3 class="dark_bg_color">Dashboard</h3>
 							<ul class="menu-click">
 								<li>
-									<a href="admin_index.html">
+									<a href="index.php">
 										<i class="fa fa-th-large"></i>
 										Dashboard
 									</a>
@@ -316,12 +316,27 @@
 											</a>
 										</li>
 									</ul>
+									<li>
 								</li>
 								<li>
-									<a href="admin_faq.html">
-										<i class="fa fa-support"></i>
-										FAQ
+									<a href="backview.php">
+										<i class="fa fa-shopping-cart"></i>
+										Events
 									</a>
+									<ul>
+										<li>
+											<a href="backview.php">
+												Events
+											</a>
+										</li>
+										<li>
+											<a href="addevents.php">
+												Single Event
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
 								</li>
 							</ul>
 
@@ -370,129 +385,12 @@
 					</form>
 				</div>
 
-
 				<div class="pull-right big-header-buttons">
 					<ul class="inline-dropdown inline-block">
 
 
-						<li class="dropdown header-notes-dropdown">
-							<a class="header-button" data-target="#" href="./" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-								<i class="fa fa-bell-o grey"></i>
-								<span class="header-button-text">Messages</span>
-								<span class="header-dropdown-number">
-									12
-								</span>
-							</a>
-
-							<div class="dropdown-menu ls">
-								<div class="dropdwon-menu-title with_background">
-									<strong>12 Pending</strong> Notifications
-
-									<div class="pull-right darklinks">
-										<a href="#">View All</a>
-									</div>
-
-								</div>
-								<ul class="list-unstyled">
-
-									<li>
-										<div class="media with_background">
-											<div class="media-left media-middle">
-												<div class="teaser_icon label-success">
-													<i class="fa fa-user"></i>
-												</div>
-											</div>
-											<div class="media-body media-middle">
-												<span class="grey">
-													New user registered
-												</span>
-												<span class="pull-right">Just Now</span>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="media with_background">
-											<div class="media-left media-middle">
-												<div class="teaser_icon label-info">
-													<i class="fa fa-bullhorn"></i>
-												</div>
-											</div>
-											<div class="media-body media-middle">
-												<span class="grey">
-													New user registered
-												</span>
-												<span class="pull-right">20 minutes</span>
-											</div>
-										</div>
-									</li>
-
-									<li>
-										<div class="media with_background">
-											<div class="media-left media-middle">
-												<div class="teaser_icon label-danger">
-													<i class="fa fa-bolt"></i>
-												</div>
-											</div>
-											<div class="media-body media-middle">
-												<span class="grey">
-													Server overloaded
-												</span>
-												<span class="pull-right">1 hour</span>
-											</div>
-										</div>
-									</li>
-
-									<li>
-										<div class="media with_background">
-											<div class="media-left media-middle">
-												<div class="teaser_icon label-success">
-													<i class="fa fa-shopping-cart"></i>
-												</div>
-											</div>
-											<div class="media-body media-middle">
-												<span class="grey">
-													New order
-												</span>
-												<span class="pull-right">3 hours</span>
-											</div>
-										</div>
-									</li>
-
-									<li>
-										<div class="media with_background">
-											<div class="media-left media-middle">
-												<div class="teaser_icon label-warning">
-													<i class="fa fa-bell-o"></i>
-												</div>
-											</div>
-											<div class="media-body media-middle">
-												<span class="grey">
-													Long database query
-												</span>
-												<span class="pull-right">4 hours</span>
-											</div>
-										</div>
-									</li>
-
-									<li>
-										<div class="media with_background">
-											<div class="media-left media-middle">
-												<div class="teaser_icon label-success">
-													<i class="fa fa-user"></i>
-												</div>
-											</div>
-											<div class="media-body media-middle">
-												<span class="grey">
-													New user registered
-												</span>
-												<span class="pull-right">4 hours</span>
-											</div>
-										</div>
-									</li>
-
-								</ul>
-							</div>
-						</li>
+					<?php
+                                include ("../backoffice/notifications.php"); ?>
 
 						<li class="dropdown header-notes-dropdown">
 							<a class="header-button" data-target="#" href="./" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
@@ -640,7 +538,7 @@
 
 						</li>
 
-						 Uncomment following to show user menu 
+						<!-- Uncomment following to show user menu 
 				
 					<li class="dropdown user-dropdown-menu">
 						<a class="header-button" id="user-dropdown-menu" data-target="#" href="./" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
@@ -678,7 +576,8 @@
 
 					</li>
 				
-			
+				-->
+
 						<li class="dropdown visible-xs-inline-block">
 							<a href="#" class="search_modal_button header-button">
 								<i class="fa fa-search grey"></i>
@@ -871,58 +770,6 @@ $total_recordse=$user->paginationCOUNTER($sql);
   
       ?>    
       </div> 
-	  <!-- calendrier --> 
-<div id="calendar"></div>
-			<script>
-			$(document).ready(function() {
-				display_events();
-			}); //end document.ready block
-
-			function display_events() {
-				var events = new Array();
-			$.ajax({
-				url: 'display_event.php',  
-				dataType: 'json',
-				success: function (response) {
-					
-				var result=response.data;
-				$.each(result, function (i, item) {
-					events.push({
-						event_id: result[i].event_id,
-						title: result[i].title,
-						start: result[i].start,
-						end: result[i].end,
-						color: result[i].color,
-						url: result[i].url
-					}); 	
-				})
-				var calendar = $('#calendar').fullCalendar({
-					defaultView: 'month',
-					timeZone: 'local',
-					editable: true,
-					selectable: true,
-					selectHelper: true,
-					select: function(start, end) {
-							alert(start);
-							alert(end);
-							$('#event_start_date').val(moment(start).format('YYYY-MM-DD'));
-							$('#event_end_date').val(moment(end).format('YYYY-MM-DD'));
-							$('#event_entry_modal').modal('show');
-						},
-					events: events,
-					eventRender: function(event, element, view) { 
-						element.bind('click', function() {
-								alert(event.event_id);
-							});
-					} 
-					}); //end fullCalendar block	
-				},//end success block
-				error: function (xhr, status) {
-				alert(response.msg);
-				}
-				});//end ajax block	
-			}
-			</script>
 </body>
 </html>
 
@@ -1010,27 +857,27 @@ $total_recordse=$user->paginationCOUNTER($sql);
 
 
 	<!-- template init -->
-	<script src="js/compressed.js"></script>
-	<script src="js/main.js"></script>
+	<script src="../../assets/frontoffice/js/compressed.js"></script>
+	<script src="../../assets/frontoffice/js/main.js"></script>
 
 	<!-- dashboard libs -->
 
 	<!-- events calendar -->
-	<script src="js/admin/moment.min.js"></script>
-	<script src="js/admin/fullcalendar.min.js"></script>
+	<script src="../../assets/frontoffice/js/admin/moment.min.js"></script>
+	<script src="../../assets/frontoffice/js/admin/fullcalendar.min.js"></script>
 	<!-- range picker -->
-	<script src="js/admin/daterangepicker.js"></script>
+	<script src="../../assets/frontoffice/js/admin/daterangepicker.js"></script>
 
 	<!-- charts -->
-	<script src="js/admin/Chart.bundle.min.js"></script>
+	<script src="../../assets/frontoffice/js/admin/Chart.bundle.min.js"></script>
 	<!-- vector map -->
-	<script src="js/admin/jquery-jvectormap-2.0.3.min.js"></script>
-	<script src="js/admin/jquery-jvectormap-world-mill.js"></script>
+	<script src="../../assets/frontoffice/js/admin/jquery-jvectormap-2.0.3.min.js"></script>
+	<script src="../../assets/frontoffice/js/admin/jquery-jvectormap-world-mill.js"></script>
 	<!-- small charts -->
-	<script src="js/admin/jquery.sparkline.min.js"></script>
+	<script src="../../assets/frontoffice/js/admin/jquery.sparkline.min.js"></script>
 
 	<!-- dashboard init -->
-	<script src="js/admin.js"></script>
+	<script src="../../assets/frontoffice/js/admin.js"></script>
 
 </body>
 

@@ -802,14 +802,6 @@ if (isset($_POST["update"])) {
                 document.getElementById("dateError").innerText = "";
             }
 
-            // Description validation
-            var desc = document.forms["formUpdate"]["desc"].value;
-            if (!/^[a-zA-Z ]{10,}$/.test(desc)) {
-                document.getElementById("descError").innerText = "Description should contain only letters and be at least 10 characters long.";
-                isValid = false;
-            } else {
-                document.getElementById("descError").innerText = "";
-            }
 
 			// Prix validation
             var prix = document.forms["formUpdate"]["prix"].value;

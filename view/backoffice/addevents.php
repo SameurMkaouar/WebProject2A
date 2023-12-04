@@ -190,7 +190,7 @@
 							<h3 class="dark_bg_color">Dashboard</h3>
 							<ul class="menu-click">
 								<li>
-									<a href="admin_index.html">
+									<a href="index.php">
 										<i class="fa fa-th-large"></i>
 										Dashboard
 									</a>
@@ -306,12 +306,27 @@
 											</a>
 										</li>
 									</ul>
+									<li>
 								</li>
 								<li>
-									<a href="admin_faq.html">
-										<i class="fa fa-support"></i>
-										FAQ
+									<a href="backview.php">
+										<i class="fa fa-shopping-cart"></i>
+										Events
 									</a>
+									<ul>
+										<li>
+											<a href="backview.php">
+												Events
+											</a>
+										</li>
+										<li>
+											<a href="addevents.php">
+												Single Event
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
 								</li>
 							</ul>
 
@@ -747,59 +762,51 @@ if(isset($_POST["submit"])) {
             color: red;
         }
     </style>
-    <script>
-        function validateForm() {
-            var isValid = true;
+   <script>
+    function validateForm() {
+        var isValid = true;
 
-            // Name validation
-            var nom = document.forms["eventForm"]["nom"].value;
-            if (!/^[a-zA-Z ]{4,}$/.test(nom)) {
-                document.getElementById("nomError").innerText = "Name should contain only letters and be at least 4 characters long.";
-                isValid = false;
-            } else {
-                document.getElementById("nomError").innerText = "";
-            }
-
-            // Nombre validation
-            var nb = document.forms["eventForm"]["nb"].value;
-            if (!/^\d+$/.test(nb)) {
-                document.getElementById("nbError").innerText = "Nombre should contain only numbers.";
-                isValid = false;
-            } else {
-                document.getElementById("nbError").innerText = "";
-            }
-
-            // Location validation
-            var location = document.forms["eventForm"]["location"].value;
-            if (!/^[a-zA-Z ]{3,}$/.test(location)) {
-                document.getElementById("locationError").innerText = "Location should contain only letters and be at least 3 characters long.";
-                isValid = false;
-            } else {
-                document.getElementById("locationError").innerText = "";
-            }
-
-            // Date validation (prevent past dates)
-            var currentDate = new Date();
-            var selectedDate = new Date(document.forms["eventForm"]["date"].value);
-            if (selectedDate < currentDate) {
-                document.getElementById("dateError").innerText = "Please select a future date.";
-                isValid = false;
-            } else {
-                document.getElementById("dateError").innerText = "";
-            }
-
-            // Description validation
-            var desc = document.forms["eventForm"]["desc"].value;
-            if (!/^[a-zA-Z ]{10,}$/.test(desc)) {
-                document.getElementById("descError").innerText = "Description should contain only letters and be at least 10 characters long.";
-                isValid = false;
-            } else {
-                document.getElementById("descError").innerText = "";
-            }
-
-            return isValid;
+        // Name validation
+        var nom = document.forms["eventForm"]["nom"].value;
+        if (!/^[a-zA-Z ]{4,}$/.test(nom)) {
+            document.getElementById("nomError").innerText = "Name should contain only letters and be at least 4 characters long.";
+            isValid = false;
+        } else {
+            document.getElementById("nomError").innerText = "";
         }
-    </script>
+
+        // Nombre validation
+        var nb = document.forms["eventForm"]["nb"].value;
+        if (!/^\d+$/.test(nb)) {
+            document.getElementById("nbError").innerText = "Nombre should contain only numbers.";
+            isValid = false;
+        } else {
+            document.getElementById("nbError").innerText = "";
+        }
+
+        // Location validation
+        var location = document.forms["eventForm"]["location"].value;
+        if (!/^[a-zA-Z0-9 ]{3,}$/.test(location)) {
+            document.getElementById("locationError").innerText = "Location should contain only letters, numbers, and be at least 3 characters long.";
+            isValid = false;
+        } else {
+            document.getElementById("locationError").innerText = "";
+        }
+
+        // Date validation (prevent past dates)
+        var currentDate = new Date();
+        var selectedDate = new Date(document.forms["eventForm"]["date"].value);
+        if (selectedDate < currentDate) {
+            document.getElementById("dateError").innerText = "Please select a future date.";
+            isValid = false;
+        } else {
+            document.getElementById("dateError").innerText = "";
+        }
+
+
+        return isValid;
+    }
+</script>
 </head>
 <body>
 
@@ -923,24 +930,24 @@ if(isset($_POST["submit"])) {
 
 
 	<!-- template init -->
-	<script src="js/compressed.js"></script>
-	<script src="js/main.js"></script>
+	<script src="../../assets/frontoffice/js/compressed.js"></script>
+	<script src="../../assets/frontoffice/js/main.js"></script>
 
 	<!-- dashboard libs -->
 
 	<!-- events calendar -->
-	<script src="js/admin/moment.min.js"></script>
-	<script src="js/admin/fullcalendar.min.js"></script>
+	<script src="../../assets/frontoffice/js/admin/moment.min.js"></script>
+	<script src="../../assets/frontoffice/js/admin/fullcalendar.min.js"></script>
 	<!-- range picker -->
-	<script src="js/admin/daterangepicker.js"></script>
+	<script src="../../assets/frontoffice/js/admin/daterangepicker.js"></script>
 
 	<!-- charts -->
-	<script src="js/admin/Chart.bundle.min.js"></script>
+	<script src="../../assets/frontoffice/js/admin/Chart.bundle.min.js"></script>
 	<!-- vector map -->
-	<script src="js/admin/jquery-jvectormap-2.0.3.min.js"></script>
-	<script src="js/admin/jquery-jvectormap-world-mill.js"></script>
+	<script src="../../assets/frontoffice/js/admin/jquery-jvectormap-2.0.3.min.js"></script>
+	<script src="../../assets/frontoffice/js/admin/jquery-jvectormap-world-mill.js"></script>
 	<!-- small charts -->
-	<script src="js/admin/jquery.sparkline.min.js"></script>
+	<script src="../../assets/frontoffice/js/admin/jquery.sparkline.min.js"></script>
 
 	<!-- dashboard init -->
 	<script src="js/admin.js"></script>

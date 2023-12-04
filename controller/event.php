@@ -122,5 +122,6 @@ class event {
             $e->getMessage();
         }
     }
+    
 }
 ?>
