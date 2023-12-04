@@ -1,4 +1,5 @@
 <?php
+ob_start(); 
 include_once 'header.php';
 
 require('../../config.php');
@@ -125,6 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								<div class="col-sm-12">
 									<div class="topmargin_20">
 										<input type="submit" name="submit" class="theme_button color1 with_shadow" value="submit" >
+										
 									</div>
 								</div>
 
@@ -139,9 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 					</div>
 					<!--.row -->
-					<?php 
-					$a1->listAppForDoctor($iddoc);
-					?>
+					
 				</div>
 				<!--.container -->
 

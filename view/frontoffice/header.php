@@ -194,15 +194,21 @@
 									<li class="">
 										<a href="appointments.php">Mes Rendez-vous</a>
 									</li>
+									<li>
+										<a href="medecins.php">medecins</a>
+									</li>
 									<!-- blog -->
 									<li>
 										<a href="blog.php">Blog</a>
 									</li>
 									<!-- eof blog -->
+									<li class="">
+										<a href="searchappointment.php">Mes ordonances</a>
+									</li>
 
 									<li>
-												<a href="team.php">Team</a>
-											</li>
+												<a href="team.php">Doctors</a>
+									</li>
 
 									<!-- gallery -->
 									<li>
@@ -217,6 +223,10 @@
 									<!-- contacts -->
 									<li>
 										<a href="contact.php">Contact</a>
+
+									</li>
+									<li>
+										<a href="appoinMedecin.php">Rendez-vous des medecins</a>
 
 									</li>
 									<!-- eof contacts -->

@@ -1,4 +1,5 @@
 <?php
+require_once('C:\xampp\htdocs\Web\config.php');
 
 // Instanciation de la classe config
 $conf = new config();
@@ -14,9 +15,9 @@ class appointment
     private string $online;
     private string $doc;
     private string $iddoc;
+  
 
-    function listApp()
-    {
+    function listApp() {
         // Utilisation de la méthode statique de config
         $db = config::getConnexion();
         try {
@@ -26,29 +27,123 @@ class appointment
             echo 'Error: ' . $e->getMessage();
         }
     
-        echo '<table border="1"><tr><td>Name:</td><td>Email:</td><td>Phone:</td><td>Age:</td><td>Date:</td><td>Sex:</td><td>Type:</td><td>Doctor:</td></tr>';
+        echo '
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Liste des rendez-vous</title>
+            <link rel="stylesheet" href="../../Assets/FrontOffice/css/fonts.css">
+        </head>
+        <body>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-sm-5">
+                        <table class="table_template darklinks" border="1">
+                            <thead>
+                                <tr>
+                                    <th style ="padding-right: 140px;">Date:</th>
+                                    <th>Type:</th>
+                                    <th style ="padding-right: 5px;">Médecin:</th>
+                                    <th style ="padding-right: 15px;">Confirmation:</th>
+                                    <th colspan="2">Actions:</th>
+                                </tr>
+                            </thead>
+                            <tbody>';
+    
         foreach ($result as $row) {
+            $date = strtotime($row['date']);
             echo '<tr>';
-            echo '<td>' . $row['name'] . '</td>';
-            echo '<td>' . $row['email'] . '</td>';
-            echo '<td>' . $row['tel'] . '</td>';
-            echo '<td>' . $row['age'] . '</td>';
-            echo '<td>' . $row['date'] . '</td>';
-            echo '<td>' . $row['sex'] . '</td>';
+            echo '<td>' . date('Y-m-d H:i', $date) . '</td>';
             echo '<td>' . $row['online'] . '</td>';
             echo '<td>' . $row['doc'] . '</td>';
+    
+            if ($row['confirmation'] == 1) {
+                echo '<td style="color: #00ff39;"> Confirmé </td>';
+                 // Cellule vide pour compenser la colonne des actions
+            } else {
+                echo '<td style="color: red;"> non Confirmé </td>';
+                echo '<td>
+                        <form method="post" action="..\deleteappointment.php">
+                            <input type="hidden" name="appointment_id" value="' . $row['id'] . '">
+                            <button class="theme_button color1" type="submit">Supprimer</button>
+                        </form>
+                      </td>';
+    
+                echo '<td>
+                        <form method="post" action="../FrontOffice/updateappointment.php">
+                            <input type="hidden" name="appointment_id" value="' . $row['id'] . '">
+                            <button class="theme_button color1" type="submit" name="update">Modifier</button>
+                        </form>
+                      </td>';
+            }
+    
             echo '</tr>';
         }
-        echo '</table>';
+        echo '</tbody></table>
+            </div>
+        </div>
+        </div>
+        </body>
+        </html>';
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
     function listAppForDoctor($iddoc)
+{
+    // Utilisation de la méthode statique de config
+    $db = config::getConnexion();
+    try {
+        // Use a prepared statement to prevent SQL injection
+        $query = 'SELECT * FROM appoitment WHERE doc = :iddoc';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':iddoc', $iddoc, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+
+    echo '<table class="table_template" border="1">
+        <thead>
+            <tr>
+                <th style="padding-right: 300px;">Date:</th>
+                <th style="padding-right: 300px;">Type:</th>
+                <th style="padding-right: 250px;">Confirmation:</th>
+            </tr>
+        </thead>
+        <tbody>';
+
+    foreach ($result as $row) {
+        $date = strtotime($row['date']);
+        echo '<tr>';
+        echo '<td>' . date('Y-m-d H:i', $date) . '</td>';
+        echo '<td>' . $row['online'] . '</td>';
+        if ($row['confirmation'] == 1) {
+            echo '<td style="color: #00ff39;"> Confirmé </td>';
+        } else {
+            echo '<td style="color: red;"> non Confirmé </td>';
+        }
+        echo '</tr>';
+    }
+    echo '</tbody></table>';
+}
+
+
+    function listAppForDoctorPreConfirmation($iddoc)
     {
         // Utilisation de la méthode statique de config
         $db = config::getConnexion();
         try {
             // Use a prepared statement to prevent SQL injection
-            $query = 'SELECT * FROM appoitment WHERE doc = :iddoc';
+            $query = 'SELECT * FROM appoitment WHERE doc = :iddoc AND confirmation = 0';
             $stmt = $db->prepare($query);
             $stmt->bindParam(':iddoc', $iddoc, PDO::PARAM_STR);
             $stmt->execute();
@@ -57,22 +152,120 @@ class appointment
             echo 'Error: ' . $e->getMessage();
         }
     
-        echo '<table border="1"><tr><td>Name:</td><td>Email:</td><td>Phone:</td><td>Age:</td><td>Date:</td><td>Sex:</td><td>Type:</td><td>Doctor:</td></tr>';
+        echo '<table class="table_template darklinks" border="1">
+            <thead>
+                <tr>
+                    <th>Nom:</th>
+                    <th>Email:</th>
+                    <th>Téléphone:</th>
+                    <th>Age:</th>
+                    <th>Date:</th>
+                    <th>Sexe:</th>
+                    <th>Type:</th>
+                    <th>Actions:</th>
+                </tr>
+            </thead>
+            <tbody>';
+    
         foreach ($result as $row) {
+            $date = strtotime($row['date']);
             echo '<tr>';
             echo '<td>' . $row['name'] . '</td>';
             echo '<td>' . $row['email'] . '</td>';
             echo '<td>' . $row['tel'] . '</td>';
             echo '<td>' . $row['age'] . '</td>';
-            echo '<td>' . $row['date'] . '</td>';
+            echo '<td>' . date('Y-m-d H:i', $date) . '</td>';
             echo '<td>' . $row['sex'] . '</td>';
             echo '<td>' . $row['online'] . '</td>';
-            echo '<td>' . $row['doc'] . '</td>';
+         
+            echo '<td>
+                    <form method="post" action="medecins.php">
+                        <input type="hidden" name="appointment_id" value="' . $row['id'] . '">
+                        <button class="theme_button color1" type="submit" name="confirm">Confirmer</button>
+                        <button class="theme_button color1" type="submit" name="delete">Supprimer</button>
+                    </form>
+                  </td>';
             echo '</tr>';
         }
-        echo '</table>';
+        echo '</tbody></table>';
     }
     
+    
+
+
+function listAppForDoctorConfirmed()
+{
+    // Utilisation de la méthode statique de config
+    $db = config::getConnexion();
+    try {
+        // Utilisation d'une requête préparée pour prévenir les injections SQL
+        $query = 'SELECT * FROM appoitment WHERE confirmation = 1';
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+
+    echo '
+    <table class="table_template darklinks" border="1">
+        <thead>
+            <tr>
+                <th>Nom:</th>
+                <th>Email:</th>
+                <th>Téléphone:</th>
+                <th>Age:</th>
+                <th>Date:</th>
+                <th>Sexe:</th>
+                <th>Type:</th>
+                <th>Confirmation:</th>
+                <th>Actions:</th>
+            </tr>
+        </thead>
+        <tbody>';
+
+    foreach ($result as $row) {
+        $date = strtotime($row['date']);
+        echo '<tr>';
+        echo '<td>' . $row['name'] . '</td>';
+        echo '<td>' . $row['email'] . '</td>';
+        echo '<td>' . $row['tel'] . '</td>';
+        echo '<td>' . $row['age'] . '</td>';
+        echo '<td>' . date('Y-m-d H:i', $date) . '</td>';
+        echo '<td>' . $row['sex'] . '</td>';
+        echo '<td>' . $row['online'] . '</td>';
+        if ($row['confirmation'] == 1){
+            echo '<td style="color: #00ff39;"> Confirmé </td>';
+        } else {
+            echo '<td style="color: red;"> non Confirmé </td>';
+        }
+        echo '<td>
+        <form method="post">
+        <input type="hidden" name="appointment_id" value="' . $row['id'] . '">
+        <button class="theme_button color1" type="submit" name="add_ordonnance" formaction="AjouterOrdonnance.php">Ajouter une Ordonnance</button>
+        <button class="theme_button color1" type="submit" name="show_details" formaction="AfficherOrd.php">Afficher les détails</button>
+    </form>
+    
+              </td>';
+        echo '</tr>';
+    }
+    echo '</tbody></table>';
+}
+
+
+function confirmAppointment($appointment_id)
+{
+    $db = config::getConnexion();
+    try {
+        $query = "UPDATE appoitment SET confirmation = 1 WHERE id = :id";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':id', $appointment_id, PDO::PARAM_INT);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+}
+
     function addappointment($name, $email, $tel, $age, $date, $sex, $online, $iddoc)
     {
         $db = config::getConnexion();
@@ -116,18 +309,29 @@ function getAppInfo($id) {
         die('Error: ' . $e->getMessage());
     }
 }
-function updateappointment($id, $nouveauDate, $nouveauemail, $nouveauonline, $nouveautel) {
+public function updateAppointment($id, $newDate, $newEmail, $newOnline, $newTel) {
     $db = config::getConnexion();
     try {
-        $query = "UPDATE appoitment SET Date = :Date, email = :email, online = :online, tel = :tel WHERE id = :id";
+        $query = "UPDATE appoitment SET Date = :date, email = :email, online = :online, tel = :tel WHERE id = :id";
         $stmt = $db->prepare($query);
+
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':Date', $nouveauDate, PDO::PARAM_STR);
-        $stmt->bindParam(':email', $nouveauemail, PDO::PARAM_STR);
-        $stmt->bindParam(':online', $nouveauonline, PDO::PARAM_STR);
-        $stmt->bindParam(':tel', $nouveautel, PDO::PARAM_STR);
+        $stmt->bindParam(':date', $newDate, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $newEmail, PDO::PARAM_STR);
+        $stmt->bindParam(':online', $newOnline, PDO::PARAM_STR);
+        $stmt->bindParam(':tel', $newTel, PDO::PARAM_STR);
 
         $stmt->execute();
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+}
+public function getAllAppointments() {
+    $db = config::getConnexion();
+    try {
+        $query = "SELECT * FROM appoitment";
+        $stmt = $db->query($query);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die('Error: ' . $e->getMessage());
     }

@@ -5,7 +5,7 @@ include_once 'header.php';
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-12 text-center">
-							<h2>Team</h2>
+							<h2>Doctors</h2>
 							<ol class="breadcrumb divided_content wide_divider">
 								<li>
 									<a href="./">
@@ -13,9 +13,9 @@ include_once 'header.php';
 									</a>
 								</li>
 								<li>
-									<a href="#">Team</a>
+									<a href="#">Doctors</a>
 								</li>
-								<li class="active">Team</li>
+								<li class="active">Doctors</li>
 							</ol>
 						</div>
 					</div>

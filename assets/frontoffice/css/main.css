@@ -1503,7 +1503,7 @@ body {
 	font-weight: 300;
 	line-height: 28px;
 	background-color: #ffffff;
-	background-color: #ccc;
+	/*background-color: #ccc;*/
 }
 
 h1,
@@ -12933,4 +12933,8 @@ a.color-icon.border-icon:hover {
 .radio_btn{
 	margin-top: 1rem;
 	margin-left: 1rem;
+}
+.px-4{
+	padding-left: 4rem;
+	padding-right: 4rem;
 }

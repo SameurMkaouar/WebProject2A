@@ -6,7 +6,7 @@ $iddoc=$_GET["iddoc"];
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-12 text-center">
-							<h2>Team Member</h2>
+							<h2>Doctor</h2>
 							<ol class="breadcrumb divided_content wide_divider">
 								<li>
 									<a href="./">
@@ -14,9 +14,9 @@ $iddoc=$_GET["iddoc"];
 									</a>
 								</li>
 								<li>
-									<a href="team.php">Team</a>
+									<a href="team.php">Doctors</a>
 								</li>
-								<li class="active">Team Member</li>
+								<li class="active">Doctor</li>
 							</ol>
 						</div>
 					</div>
@@ -41,6 +41,12 @@ $iddoc=$_GET["iddoc"];
 							</div>
 							<div class="col-md mx-auto text-center w-full mt-4 bottommargin_0">
 							<a href="appointment.php?iddoc=<?php echo $iddoc; ?>" class="theme_button color1 margin_0">Make an appointment</a>
+							<div class="col-sm-12">
+									<div class="topmargin_20">
+										
+										<a href="appointments.php?id=<?php echo $iddoc; ?>"> Voir les rendez-vous</a>
+									</div>
+								</div>
 						</div>
 						</div>
 

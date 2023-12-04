@@ -33,7 +33,7 @@ $a1=new appointment;
 			
 
 			<section class="ls columns_padding_25 section_padding_top_100 section_padding_bottom_100">
-				<div class="container-full px-4">
+				<div class="container">
 					<div class="row">
 
 						<div class="col-md-8 to_animate" data-animation="scaleAppear">
@@ -41,14 +41,7 @@ $a1=new appointment;
 							<h2 class="section_header small bottommargin_40"></h2>
 							
                             <?php
-							
-							if(isset($_GET["id"])){
-								$iddoc = $_GET["id"];
-								$a1->listAppForDoctor($iddoc);
-				
-							}else {
-								$a1 -> listApp() ;
-							}
+								$a1->listAppForDoctorConfirmed();
 						?>
 
 					</div>
