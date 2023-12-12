@@ -1,5 +1,5 @@
 <?php
-include(__DIR__ . '/../config.php');
+//include(__DIR__ . '/../config.php');
 //include 'updateproduct.php';
 
 $pdo = config::getConnexion();

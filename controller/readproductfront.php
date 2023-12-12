@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__ . '/../config.php');
+//include_once(__DIR__ . '/../config.php');
 
 
 $pdo = config::getConnexion();
@@ -14,7 +14,7 @@ if ($pdo) {
             //$products = $query->fetchAll(PDO::FETCH_ASSOC);
 
             // Default values
-            $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'productPrice';
+            $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'productPrice-desc';
             $showcount = in_array(($sc = isset($_GET['showcount']) ? $_GET['showcount'] : 6), [6, 12, 18, 24, 30, 36]) ? $sc : 6;
             $search = isset($_GET['search']) ? $_GET['search'] : '';
 

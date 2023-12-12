@@ -680,9 +680,10 @@
                     <label class="grey" for="orderby">Sort By:</label>
                     <select class="form-control orderby" name="orderby" id="orderby">
                       <option value="price" <?php if (isset($_GET['orderby']) && $_GET['orderby'] == 'price') echo 'selected'; ?>>Low To High</option>
-                      <option value="price-desc" <?php if (isset($_GET['orderby']) && $_GET['orderby'] == 'price-desc') echo 'selected'; ?>>High To Low</option>
+                      <option value="price-desc" <?php if (!isset($_GET['orderby']) || $_GET['orderby'] == 'price-desc') echo 'selected'; ?>>High To Low</option>
                     </select>
                   </span>
+
                   <span>
                     <a href="#" id="toggle_shop_view" class=""></a>
                   </span>

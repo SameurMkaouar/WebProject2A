@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__ . '/../config.php');
+//include_once(__DIR__ . '/../config.php');
 $pdo = config::getConnexion();
 if ($pdo) {
     $twentyFourHoursAgo = strtotime('-24 hours');

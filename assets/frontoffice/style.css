@@ -1,0 +1,348 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background: url(https://images.pexels.com/photos/7176305/pexels-photo-7176305.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-repeat: no-repeat;
+    background-size: 100% ;
+    font-family: "PT Sans";
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+  
+  .hide {
+    display: none;
+  }
+  
+
+  
+  
+  .wrapper {
+    background: rgba(0, 0, 0, 0.6);
+    position: relative;
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    margin-top: 90px;
+  }
+  
+  .left,
+  .right {
+    width: 50%;
+  }
+  
+  .left {
+    float: left;
+  }
+  
+  .right {
+    float: right;
+  }
+  
+  .back-header,
+  .back-p {
+    margin: 20px;
+    color: #fafafa;
+    letter-spacing: 1px;
+  }
+  
+  .back-header {
+    font-family: "Ubuntu";
+    font-size: 30px;
+    font-weight: 500;
+  }
+  
+  .back-p {
+    font-family: "PT Sans";
+    letter-spacing: 1px;
+    font-size: 20px;
+    line-height: 30px;
+    margin-right: 60px;
+  }
+  
+  .background button {
+    position: absolute;
+    left: 0;
+    bottom: 60px;
+  }
+  
+  .background .left button {
+    left: 20px;
+  }
+  
+  .background .right button {
+    left: 420px;
+  }
+  
+  .form-container {
+    position: absolute;
+    width: 375px;
+    height: 535px;
+    background-color:white ;
+    top: -25px;
+    left: 10px;
+    box-shadow: 9px 13px 16px 0px rgba(0, 0, 0, 0.75);
+  }
+  
+  .sign-up,
+  .login {
+    margin: 40px;
+  }
+  
+  .back-btn {
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+    border: 1px solid white;
+    color: #fafafa;
+    transition: 0.3s all;
+  }
+  
+  .back-btn:hover {
+    background-color: #D9BE94;
+    border: 1px solid #D9BE94;
+  }
+  
+  .form-btn {
+    display: block;
+    margin-top: 3px;
+    width: 150px;
+    height: 35px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 3px;
+    background-color: #91D0CC;
+    color: #fafafa;
+    transition: 0.4s all;
+  }
+  
+  .sign-up button:hover,
+  .login button:hover {
+    background-color: #4BB0A9;
+  }
+  
+  .form-header {
+    font-size: 32px;
+    color: #91D0CC;
+  }
+  
+  .form-container input,select{
+    margin-top: 20px;
+    width: 80%;
+    height: 30px;
+    border: 0;
+    border-bottom: 1px solid #888;
+  }
+  .sex_choice label{
+    margin-top: 20px;
+    padding: 4px;
+  }
+  
+  input[type=text],
+  input[type=email],select{
+    color: #555;
+  }
+  
+  .form-container i {
+    margin-left: 10px;
+    margin-bottom: -5px;
+    color: #888;
+  }
+  
+  .login button,
+  .forgot {
+    display: inline-block;
+  }
+  
+  .forgot {
+    margin-left: 15px;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .forgot:hover {
+    color: #D9BE94;
+    text-decoration: underline;
+  }
+
+  .sex_choice{
+    display: flex;
+    align-items: center;
+  }
+  .choice {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; 
+}
+.form-container input[type="date"] {
+    margin-top: 20px;
+    width: 80%;
+    height: 30px;
+    border: 0;
+    border-bottom: 1px solid #888;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+    color: #555;
+}
+  
+
+.sex_choice .choice label,.radio{
+    color: #555;
+    font-size: 16px; /* Adjust the font size */
+    cursor: pointer;
+  }
+  
+.fullname{
+  display: flex; 
+}
+.fullname input{
+  max-width: 110px;
+}
+.ln{
+  margin-left:20px;
+}
+.error-message{
+  color: rgb(148, 5, 5);
+}
+.kemel{
+  display: flex;
+}
+.doctor-registration{
+  margin-left: 80px;
+  width: 265px;
+}
+.common{
+  width: 295px;
+}
+.notif{
+  color: black;
+  font-size: medium;
+}
+
+
+
+.alert-top {
+  position: fixed;
+  top: 0;
+  left: 40%;
+ 
+  z-index: 1000;
+  border: 1px solid transparent;
+  padding: 10px;
+  
+}
+.alert {
+  padding: 15px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  border-width: 0 0 0 4px;
+  
+}
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+
+.alert-top.show {
+  animation: slideInDown 0.7s ease-out forwards;
+}
+
+.alert-top.hide {
+  animation: slideOutUp 0.7s ease-out forwards;
+}
+
+@keyframes slideInDown {
+  0% {
+      transform: translateX(-50%) translateY(-100%);
+  }
+
+  100% {
+      transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes slideOutUp {
+  0% {
+      transform: translateX(-50%) translateY(0);
+  }
+
+  100% {
+      transform: translateX(-50%) translateY(-100%);
+  }
+}
+
+button.close {
+  min-width: 0;
+}
+button.close {
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+}
+.close {
+  float: right;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .2;
+}
+
+.sign-up {
+  margin-top: 25px;
+}
+.boutonet{
+  display: flex;
+  margin-top: 10px;
+  width: 300px;
+
+}
+button#doctorRegistrationBtn {
+  width: 40px;
+  height: 38px;
+  margin-left: 48px;
+  border: none;
+  background-color: #91D0CC;
+  border-radius: 5px;
+}
+#doctorRegistrationBtn i{
+  margin: 0px;
+  color: #fff;
+}
+.checkbox{
+  width: 20px!important ;
+  margin-top: 0px !important;
+  cursor: pointer;
+}
+.rmmbr{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

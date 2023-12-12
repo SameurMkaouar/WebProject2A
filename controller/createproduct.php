@@ -38,8 +38,9 @@ if ($pdo) {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         CreateProduct();
-        //header('Location: readproduct.php');
-        header('Location: ../view/HTML/admin_products.php');
+
+        //header('Location: ../view/HTML/admin_products.php');
+        header('Location: ../view/backoffice/admin_products.php');
     }
 } else {
     echo "Error: Unable to connect to the database.";

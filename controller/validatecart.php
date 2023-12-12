@@ -7,6 +7,7 @@ if ($pdo) {
     function validateCart()
     {
         $cartID = $_GET['Cart_ID'];
+        $userID = $_GET['User_ID'];
         global $pdo;
 
         try {
@@ -14,11 +15,11 @@ if ($pdo) {
             $pdo->beginTransaction();
 
             // Validate the cart with the given ID
-            $updateQuery = $pdo->prepare("UPDATE cart SET Status = 0 ");
+            $updateQuery = $pdo->prepare("UPDATE cart SET Status = 0, creationDate = CURRENT_TIMESTAMP");
             $updateQuery->execute();
 
             // Create a new cart with the same ID and status set to 1
-            $insertQuery = $pdo->prepare("INSERT INTO cart (Status) VALUES (1)");
+            $insertQuery = $pdo->prepare("INSERT INTO cart (Status, User_ID) VALUES (1, $userID)");
             $insertQuery->execute();
 
             // Commit the transaction
@@ -34,7 +35,8 @@ if ($pdo) {
     if (isset($_GET['Cart_ID'])) {
         validateCart();
         echo "Cart validated successfully!";
-        header('Location: ../view/HTML/shop-right.php');
+        //header('Location: ../view/HTML/shop-right.php');
+        header('Location: ../view/frontoffice/shop-right.php');
     } else {
         echo "Error: Cart ID not provided in the request.";
     }

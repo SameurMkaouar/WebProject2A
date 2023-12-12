@@ -1,5 +1,8 @@
+<!-- Add this to your head to include Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyAuW68RP4/Epj8/9aMIcBpBaqQmyt5f90" crossorigin="anonymous">
+
 <?php
-include_once(__DIR__ . '/../config.php');
+//include_once(__DIR__ . '/../config.php');
 $pdo = config::getConnexion();
 
 if ($pdo) {
@@ -15,6 +18,8 @@ if ($pdo) {
         try {
             $query = $pdo->query("SELECT * FROM cart WHERE Status = 0 LIMIT $offset, $recordsPerPage");
             $carts = $query->fetchAll(PDO::FETCH_ASSOC);
+            $queryUsers = $pdo->query("SELECT * FROM users");
+            $users = $queryUsers->fetchAll(PDO::FETCH_ASSOC);
 
             // Retrieve products
             $productsQuery = $pdo->query("SELECT * FROM product");
@@ -29,29 +34,33 @@ if ($pdo) {
                 </tr>
                 <?php
                 foreach ($carts as $cart) {
-                    echo '<tr class="item-editable">';
-                    echo '<td class="media-middle">';
-                    echo '<div class="media-body">';
-                    // Display customer name or link to customer profile (assuming User_ID is the customer ID)
-                    echo '<a href="#" data-toggle="modal" data-target="#cartModal' . $cart['Cart_ID'] . '">' . $cart['Cart_ID'] . '</a>';
-                    echo '</div>';
-                    echo '</td>';
-                    echo '<td>';
-                    echo '<div class="media">';
-                    echo '<div class="media-left">';
-                    // You can add customer image or other details here
-                    echo '</div>';
-                    echo '<div class="media-body">';
-                    // Display customer name or link to customer profile (assuming User_ID is the customer ID)
-                    echo '<p>' . $cart['User_ID'] . '</p>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</td>';
-                    echo '<td class="media-middle">';
-                    // Display the date from the cart (assuming creationDate is the date)
-                    echo '<time datetime="' . $cart['creationDate'] . '" class="entry-date">' . $cart['creationDate'] . '</time>';
-                    echo '</td>';
-                    echo '</tr>';
+                    foreach ($users as $user) {
+                        if ($cart['User_ID'] == $user['Id']) {
+                            echo '<tr class="item-editable">';
+                            echo '<td class="media-middle">';
+                            echo '<div class="media-body">';
+                            // Display customer name or link to customer profile (assuming User_ID is the customer ID)
+                            echo '<a href="#" data-toggle="modal" data-target="#cartModal' . $cart['Cart_ID'] . '">' . $cart['Cart_ID'] . '</a>';
+                            echo '</div>';
+                            echo '</td>';
+                            echo '<td>';
+                            echo '<div class="media">';
+                            echo '<div class="media-left">';
+                            // You can add customer image or other details here
+                            echo '</div>';
+                            echo '<div class="media-body">';
+                            // Display customer name or link to customer profile (assuming User_ID is the customer ID)
+                            echo '<p>' . $user['Username'] . '</p>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</td>';
+                            echo '<td class="media-middle">';
+                            // Display the date from the cart (assuming creationDate is the date)
+                            echo '<time datetime="' . $cart['creationDate'] . '" class="entry-date">' . $cart['creationDate'] . '</time>';
+                            echo '</td>';
+                            echo '</tr>';
+                        }
+                    }
                 }
                 ?>
             </table>
@@ -122,17 +131,46 @@ if ($pdo) {
             ?>
 
             <!-- Pagination -->
-            <ul class="pagination">
-                <?php
-                $totalPagesQuery = $pdo->query("SELECT COUNT(*) as total FROM cart WHERE Status = 0");
-                $totalPages = ceil($totalPagesQuery->fetch(PDO::FETCH_ASSOC)['total'] / $recordsPerPage);
-
-                for ($i = 1; $i <= $totalPages; $i++) {
-                    echo '<li class="page-item ' . ($currentPage == $i ? "active" : "") . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+            <style>
+                .custom-pagination {
+                    list-style: none;
+                    display: flex;
+                    justify-content: flex-start;
+                    /* Align to the left */
+                    margin-top: 20px;
                 }
-                ?>
-            </ul>
+
+                .custom-pagination li {
+                    margin: 0 5px;
+                }
+
+                .custom-pagination a {
+                    text-decoration: none;
+                    padding: 5px 10px;
+                    color: #91d0cc;
+                }
+
+                .custom-pagination .active a {
+                    color: #000;
+                }
+            </style>
+
+            <nav aria-label="Page navigation">
+                <ul class="custom-pagination">
+                    <?php
+                    $totalPagesQuery = $pdo->query("SELECT COUNT(*) as total FROM cart WHERE Status = 0");
+                    $totalPages = ceil($totalPagesQuery->fetch(PDO::FETCH_ASSOC)['total'] / $recordsPerPage);
+
+                    for ($i = 1; $i <= $totalPages; $i++) {
+                        echo '<li class="' . ($currentPage == $i ? "active" : "") . '"><a href="?page=' . $i . '">' . $i . '</a></li>';
+                    }
+                    ?>
+                </ul>
+            </nav>
             <!-- End of Pagination -->
+
+
+
 
 <?php
         } catch (PDOException $e) {

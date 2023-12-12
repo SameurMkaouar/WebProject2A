@@ -37,7 +37,15 @@ if ($pdo) {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         AddProductToCart();
-        header('Location: ../view/HTML/shop-product-right.php?ID=' . $_GET['productid']);
+        //header('Location: ../view/HTML/shop-product-right.php?ID=' . $_GET['productid']);
+        // header(
+        //     '../view/frontoffice/shop-product-right.php?ID=' . $_GET['productid']
+        // );
+?>
+        <script>
+            window.location.href = "../view/frontoffice/shop-product-right.php<?php echo '?ID=' . $_GET['productid']; ?>";
+        </script>
+<?php
     }
 } else {
     echo "Error: Unable to connect to the database.";

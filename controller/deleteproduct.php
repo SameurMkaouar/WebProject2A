@@ -13,7 +13,8 @@ if ($pdo) {
             $query->execute(['Product_ID' => $productId]);
 
             // Redirect to the product list after deletion
-            header('Location: ../view/HTML/admin_products.php');
+            //header('Location: ../view/HTML/admin_products.php');
+            header('Location: ../view/backoffice/admin_products.php');
             exit();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

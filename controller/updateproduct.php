@@ -26,11 +26,11 @@ function updateProduct()
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>Update Product</title>
-                        <link rel="stylesheet" href="../view/HTML/css/css/bootstrap.min.css" />
-                        <link rel="stylesheet" href="../view/css/animations.css" />
-                        <link rel="stylesheet" href="../view/HTML/css/fonts.css" />
-                        <link rel="stylesheet" href="../view/HTML/css/main.css" class="color-switcher-link" />
-                        <link rel="stylesheet" href="../view/HTML/css/dashboard.css" class="color-switcher-link" />
+                        <link rel="stylesheet" href="../assets/frontoffice/css/bootstrap.min.css" />
+                        <link rel="stylesheet" href="../assets/frontoffice/css/animations.css" />
+                        <link rel="stylesheet" href="../assets/frontoffice/css/fonts.css" />
+                        <link rel="stylesheet" href="../assets/frontoffice/css/main.css" class="color-switcher-link" />
+                        <link rel="stylesheet" href="../assets/frontoffice/css/dashboard.css" class="color-switcher-link" />
                     </head>
 
                     <body class="admin">

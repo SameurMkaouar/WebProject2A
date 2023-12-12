@@ -1,0 +1,84 @@
+#button-user {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#button-publish {
+  display: flex;
+}
+
+.rating {
+  width: 100%;
+  text-align: center;
+  display: flex;
+}
+
+.like,
+.dislike,
+.comments {
+  display: inline-block;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.dislike:hover,
+.like:hover {
+  color: #2ebdd1;
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.active {
+  color: #2ebdd1;
+}
+
+.widget_tag_cloud a.active {
+  background-color: #91d0cc;
+  border-color: #91d0cc;
+}
+
+.rating {
+  /* display: flex;
+  justify-content: space-around; */
+  /* Modify size for the entire rating section */
+  font-size: 14px; /* Adjust this value to your desired font size */
+
+  /* Optional: Add additional styling */
+  /* Other styles like color, margin, padding, etc., can be added here */
+}
+
+.rating i {
+  /* Modify size for all icons within the rating section */
+  font-size: 2em; /* Adjust this value to your desired icon size */
+}
+
+.rating p {
+  /* Modify size for all text within the rating section */
+  font-size: 12px; /* Adjust this value to your desired text size */
+}
+
+.profile-image {
+  border-radius: 50%; /* Creates a circular shape */
+  /* Additional styles can be added here */
+}
+
+.media {
+  display: flex;
+  margin-left: 25px;
+  max-width: 400px;
+}

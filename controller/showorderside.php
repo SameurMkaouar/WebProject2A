@@ -1,5 +1,5 @@
 <?php
-include(__DIR__ . '/../config.php');
+//include(__DIR__ . '/../config.php');
 //include 'updateproduct.php';
 
 $pdo = config::getConnexion();
@@ -77,7 +77,7 @@ if ($pdo) {
             <td>Total:</td>
             <td>
                 <span class="amount grey">
-                    <strong>$<?php echo $tot ?></strong>
+                    <strong>$<?php echo " " . $tot + 10 ?></strong>
                 </span>
             </td>
         </tr>
