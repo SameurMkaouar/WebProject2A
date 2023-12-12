@@ -1,9 +1,42 @@
 <?php
 session_start();
 require_once "../../model/user.php";
+require_once "../../model/util.php";
 
+$user = new user();
+$userInfo = $user->retrieveInformation($_SESSION['user_id']);
+if(isset($_GET['error']))
+{echo $_GET['error'];}
+
+// Check if information is retrieved successfully
+if (!empty($userInfo)) {
+    // Access the first element of the array (assuming it's a single user record)
+    $userRecord = $userInfo[0];
+ 
+    // Process or store the information as needed
+    $username = isset($userRecord['Username']) ? $userRecord['Username'] : "Default Username";
+    $email = isset($userRecord['Email']) ? $userRecord['Email'] : "Default Email";
+    $password = isset($userRecord['Password']) ? $userRecord['Password'] : "Default Password";
+    $firstname = isset($userRecord['Firstname']) ? $userRecord['Firstname'] : "Default Firstname";
+    $lastname = isset($userRecord['Lastname']) ? $userRecord['Lastname'] : "Default Lastname";
+    $sex = isset($userRecord['Sex']) ? $userRecord['Sex'] : "Default Sex";
+    
+    $picture = isset($userRecord['Picture']) ? $userRecord['Picture'] : "";
+    $DoB = isset($userRecord['DateOfBirth']) ? $userRecord['DateOfBirth'] : "Default Date of Birth";
+    $crdate = isset($userRecord['CreationDate']) ? $userRecord['CreationDate'] : "Default Creation Date";
+    $role = isset($userRecord['Role']) ? $userRecord['Role'] : "Default Role";
+    $numero=isset($userRecord['Numero']) ? $userRecord['Numero'] : "00 000 000";
+    $description = isset($userRecord['Description']) && $userRecord['Description'] !== null ? trim($userRecord['Description']) : "no description";
+
+
+
+    // Now you can use $username, $email, $password, etc.
+
+} else {
+    // Handle the case when no information is retrieved or an error occurs
+    echo "Failed to retrieve user information.";
+}
 ?>
-
 
 
 <!DOCTYPE html>
@@ -30,6 +63,18 @@ require_once "../../model/user.php";
 	<link rel="stylesheet" href="../../assets/frontoffice/css/animations.css">
 	<link rel="stylesheet" href="../../assets/frontoffice/css/fonts.css">
 	<link rel="stylesheet" href="../../assets/frontoffice/css/main.css" class="color-switcher-link">
+  <link rel="stylesheet" href="../../assets/frontoffice/style.css">
+  <link rel="stylesheet" href="../../assets/frontoffice/alert.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+	
+
+
+
+  
+ 
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans|Ubuntu:400,500" rel="stylesheet">
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 	<script src="../../assets/frontoffice/js/vendor/modernizr-2.6.2.min.js"></script>
 
 	<!--[if lt IE 9]>
@@ -253,10 +298,19 @@ require_once "../../model/user.php";
 					</div>
 				</div>
 			</header>
+      <?php
+if (isset($_GET['error']) && !empty($_GET['error'])) {
+    ?>
+    <div class="alert alert-danger alert-top" role="alert">
+        <button type="button" class="close" id="close" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>Snap!</strong><?php echo htmlspecialchars($_GET['error']); ?>
+    </div>
+<?php } ?>
 
-        <section
-          class="ls section_padding_top_50 section_padding_bottom_50 columns_padding_10"
-        >
+
+      <section class="ls section_padding_top_50 section_padding_bottom_50 columns_padding_10">
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-12">
@@ -270,7 +324,7 @@ require_once "../../model/user.php";
 
             <div class="row">
               <div class="col-xs-12">
-                <form class="form-horizontal" action="../../controller/update.php" method="post" id="form">
+                <form class="form-horizontal" action="../../controller/update.php" method="post" id="form" enctype="multipart/form-data">
                   <div class="row flex-row">
                     <div class="col-md-6">
                       <div class="with_border with_padding">
@@ -285,7 +339,8 @@ require_once "../../model/user.php";
                             >Select Avatar</label
                           >
                           <div class="col-lg-9">
-                            <input type="file" id="user-profile-avatar" name="picture" />
+                          <?php displayPicture($picture); ?>
+                            <input type="file" id="user-profile-avatar"  name="picture" />
                             <p class="help-block">
                               Select your 200x200px avatar
                             </p>
@@ -295,8 +350,7 @@ require_once "../../model/user.php";
                         <div class="row form-group">
                           <label class="col-lg-3 control-label">Sex:</label>
                           <div class="col-lg-9">
-                            <select class="form-control" name="sex">
-                              <option selected=""></option>
+                            <select class="form-control" name="sex" value="<?php echo $sex;?>" selected>
                               <option>Male</option>
                               <option>Female</option>
                               <option>Other</option>
@@ -308,7 +362,7 @@ require_once "../../model/user.php";
                             >username:</label
                           >
                           <div class="col-lg-9">
-                            <input type="text" class="form-control" name="username" />
+                            <input type="text" class="form-control" value="<?php echo $username;?>" name="username" />
                           </div>
                         </div>
                         <div class="row form-group">
@@ -316,7 +370,7 @@ require_once "../../model/user.php";
                             >firstname:</label
                           >
                           <div class="col-lg-9">
-                            <input type="text" class="form-control" name="firstname"  />
+                            <input type="text" class="form-control"value="<?php echo $firstname;?>" name="firstname"  />
                           </div>
                         </div>
                         <div class="row form-group">
@@ -324,7 +378,17 @@ require_once "../../model/user.php";
                             >lastname:</label
                           >
                           <div class="col-lg-9">
-                            <input type="text" class="form-control" name="lastname"  />
+                            <input type="text" class="form-control" value="<?php echo $lastname;?>" name="lastname"  />
+                          </div>
+                        </div>
+                        <div class="row form-group">
+                          <label class="col-lg-3 control-label"
+                            >description:</label
+                          >
+                          <div class="col-lg-9">
+                            
+                          <textarea id="description" name="description" rows="4" cols="50"><?php echo htmlspecialchars($description, ENT_QUOTES, 'UTF-8');?></textarea>
+
                           </div>
                         </div>
                       </div>
@@ -344,7 +408,7 @@ require_once "../../model/user.php";
                             >Mobile number:</label
                           >
                           <div class="col-lg-9">
-                            <input type="tel" class="form-control" />
+                            <input type="text" class="form-control" value="<?php echo $numero;?>" name="numero" />
                           </div>
                         </div>
                         <div class="row form-group">
@@ -352,7 +416,7 @@ require_once "../../model/user.php";
                             >E-mail address:</label
                           >
                           <div class="col-lg-9">
-                            <input type="email" class="form-control" name="email" />
+                            <input type="email" class="form-control" value="<?php echo $email;?>" name="email" />
                           </div>
                         </div>
                         
@@ -375,7 +439,7 @@ require_once "../../model/user.php";
                             >Old password:</label
                           >
                           <div class="col-lg-9">
-                            <input type="password" class="form-control" />
+                            <input type="password" class="form-control" name="old_password"/>
                           </div>
                         </div>
                         <div class="row form-group">
@@ -383,7 +447,7 @@ require_once "../../model/user.php";
                             >New password:</label
                           >
                           <div class="col-lg-9">
-                            <input type="password" class="form-control" />
+                            <input type="password" class="form-control" name="new_password" />
                           </div>
                         </div>
                         <div class="row form-group">
@@ -391,7 +455,7 @@ require_once "../../model/user.php";
                             >Repeat New password:</label
                           >
                           <div class="col-lg-9">
-                            <input type="password" class="form-control" />
+                            <input type="password" class="form-control" name="repeat_password" />
                           </div>
                         </div>
                       </div>
@@ -570,5 +634,7 @@ require_once "../../model/user.php";
 
     <!-- dashboard init -->
     <script src="js/admin.js"></script>
+
+    <script src="../../assets/frontoffice/alert.js"></script>
   </body>
 </html>

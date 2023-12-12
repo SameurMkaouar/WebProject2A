@@ -18,6 +18,9 @@
     display: none;
   }
   
+
+  
+  
   .wrapper {
     background: rgba(0, 0, 0, 0.6);
     position: relative;
@@ -109,7 +112,7 @@
   
   .form-btn {
     display: block;
-    margin-top: 30px;
+    margin-top: 3px;
     width: 150px;
     height: 35px;
     font-size: 18px;
@@ -130,7 +133,7 @@
     color: #91D0CC;
   }
   
-  .form-container input {
+  .form-container input,select{
     margin-top: 20px;
     width: 80%;
     height: 30px;
@@ -143,7 +146,7 @@
   }
   
   input[type=text],
-  input[type=email] {
+  input[type=email],select{
     color: #555;
   }
   
@@ -172,7 +175,6 @@
   .sex_choice{
     display: flex;
     align-items: center;
-    justify-content:center;
   }
   .choice {
     display: flex;
@@ -208,4 +210,139 @@ input[type="date"] {
 }
 .ln{
   margin-left:20px;
+}
+.error-message{
+  color: rgb(148, 5, 5);
+}
+.kemel{
+  display: flex;
+}
+.doctor-registration{
+  margin-left: 80px;
+  width: 265px;
+}
+.common{
+  width: 295px;
+}
+.notif{
+  color: black;
+  font-size: medium;
+}
+
+
+
+.alert-top {
+  position: fixed;
+  top: 0;
+  left: 40%;
+ 
+  z-index: 1000;
+  border: 1px solid transparent;
+  padding: 10px;
+  
+}
+.alert {
+  padding: 15px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  border-width: 0 0 0 4px;
+  
+}
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+
+.alert-top.show {
+  animation: slideInDown 0.7s ease-out forwards;
+}
+
+.alert-top.hide {
+  animation: slideOutUp 0.7s ease-out forwards;
+}
+
+@keyframes slideInDown {
+  0% {
+      transform: translateX(-50%) translateY(-100%);
+  }
+
+  100% {
+      transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes slideOutUp {
+  0% {
+      transform: translateX(-50%) translateY(0);
+  }
+
+  100% {
+      transform: translateX(-50%) translateY(-100%);
+  }
+}
+
+button.close {
+  min-width: 0;
+}
+button.close {
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+}
+.close {
+  float: right;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .2;
+}
+
+.sign-up {
+  margin-top: 25px;
+}
+.boutonet{
+  display: flex;
+  margin-top: 10px;
+  width: 300px;
+
+}
+button#doctorRegistrationBtn {
+  width: 40px;
+  height: 38px;
+  margin-left: 48px;
+  border: none;
+  background-color: #91D0CC;
+  border-radius: 5px;
+}
+#doctorRegistrationBtn i{
+  margin: 0px;
+  color: #fff;
+}
+.checkbox{
+  width: 20px!important ;
+  margin-top: 0px !important;
+  cursor: pointer;
+}
+.rmmbr{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

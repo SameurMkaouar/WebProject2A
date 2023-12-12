@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+
+
+
+body {
+    background-color: #eee
+}
+
+.add {
+    border-radius: 20px
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: all 1s;
+    cursor: pointer
+}
+
+.card:hover {
+    -webkit-box-shadow: 3px 5px 17px -4px #777777;
+    box-shadow: 3px 5px 17px -4px #777777
+}
+
+.ratings i {
+    color: #4BB0A9;
+}
+
+.apointment button {
+    border-radius: 20px;
+    background-color: #91D0CC;
+    color: #fff;
+    border-color: #91D0CC;
+    font-size: 13px
+}
+.apointment button:hover{
+  background-color: #4BB0A9;
+  border-color: #4BB0A9;
+}
+.mb-0{
+  font-weight: bolder;
+}

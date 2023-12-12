@@ -2228,7 +2228,7 @@ body.admin {
 }
 
 .item-editable .media img {
-  border-radius: 50%;
+  border-radius: 30%;
 }
 
 tr.item-editable .media-left img {
@@ -2399,6 +2399,7 @@ tr.item-editable .media-left img {
 
 .page_header_side_sticked.ds .toggle_menu_side {
   background-color: #1a1a1a;
+  
 }
 
 .page_header_side_sticked h3 {

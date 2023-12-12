@@ -1,0 +1,15 @@
+{
+    "name": "khalil/web-project",
+    "description": "my awsome project",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Khalil\\WebProject\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "phpmailer/phpmailer": "^6.9",
+        "google/apiclient": "^2.0"
+    }
+}

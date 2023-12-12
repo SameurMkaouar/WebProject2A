@@ -1503,7 +1503,7 @@ body {
 	font-weight: 300;
 	line-height: 28px;
 	background-color: #ffffff;
-	background-color: #ccc;
+	/*background-color: #ccc;*/
 }
 
 h1,
@@ -1512,7 +1512,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Playfair Display', serif;
+	
 	font-weight: 700;
 	line-height: 1.1;
 	word-break: break-word;
@@ -1590,6 +1590,7 @@ blockquote h5 {
 }
 
 img, figure {
+	border-radius: 5px;
 	max-width: 100%;
 	height: auto;
 }
@@ -4589,6 +4590,7 @@ body.boxed {
 .grey {
 	color: #444444;
 	border-color: #444444;
+	padding-left: 1px;
 }
 
 .lightgreylinks a {
@@ -5712,7 +5714,7 @@ h5.small-text, h4.small-text {
 	line-height: 1;
 	padding: 2px 4px 1px;
 	top: 22%;
-	right: 0;
+	right: 2px;
 	font-weight: bold;
 }
 
@@ -6059,7 +6061,7 @@ a.logo.vertical_logo img {
 }
 
 .header_left_logo {
-	white-space: nowrap;
+	white-space:nowrap;
 	padding: 0 15px;
 	overflow: visible;
 }
@@ -6292,6 +6294,9 @@ body.active-side-header:after {
 @media (min-width: 600px) {
 	.page_header_side.page_header_side_sticked.active-slide-side-header {
 		left: 0;
+		font-size: 14px;
+    line-height: 24px;
+}
 	}
 
 	.page_header_side_sticked ~ * {
@@ -7863,6 +7868,7 @@ body.active-side-header.slide-right .page_header_side {
 	font-size: 14px;
 	position: relative;
 	z-index: 1001;
+	height: 49px;
 }
 
 .page_topline .media {
@@ -8456,7 +8462,7 @@ body.active-side-header.slide-right .page_header_side {
 	.sf-menu li {
 		white-space: nowrap;
     /* no need for Supersubs plugin */
-		*white-space: normal;
+		*white-space:normal;
     /* ...unless you support IE7 (let it wrap) */
 		-webkit-transition: background .2s;
 		transition: background .2s;
@@ -12940,7 +12946,7 @@ a.color-icon.border-icon:hover {
 }
 
 .profile-icon {
-    top: 10px;
+    top: 4px;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -12971,6 +12977,43 @@ a.color-icon.border-icon:hover {
     display: block;
 }
 .logout{
-	margin-top: 14px;
+	margin-top: 11px;
 	margin-left: 7px;
+}
+.tabs{
+	width: -webkit-fill-available;
+	font-size: 14px;
+	color: #333;
+	font-family: 'Muli', sans-serif;
+}
+
+.box{
+	max-width: 300px;
+	height: 400px;
+	border-radius: 15px;
+	overflow: hidden;
+}
+.box img{
+	height:200px;
+	
+}
+a {
+ 
+    text-decoration: none;
+}
+.list-notif{
+	padding: 14px !important;
+}
+.posts-number {
+    position: absolute;
+    font-size: 10px;
+    color: #ffffff;
+    background-color: #333;
+    border-radius: 10px;
+    line-height: 1;
+    padding: 6px 7px 4px;
+    top: 16%;
+    right: 1;
+	margin-left: 10px;
+    font-weight: bold;
 }
